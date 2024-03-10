@@ -1,47 +1,55 @@
-# Log and QR Code Management
+# Book Manager API
 
-This controller manages logs and QR codes in the application.
+This API serves as a book manager, allowing users to perform various operations related to authors, books, and tags within the application. Users can interact with endpoints to retrieve, create, update, and delete books, authors, and tags, as well as manage the relationships between them.
 
 ## Endpoints
 
-### Log Management
+### Author Management
 
-- **GET /api/logs**: Retrieve all logs. Can be filtered by author by passing the `author` parameter.
-- **GET /api/logs/{id}**: Retrieve a log by its identifier.
-- **POST /api/logs**: Create a new log. Data about the new log should be sent in the request body.
-- **PUT /api/logs/{id}**: Update an existing log. Data about the updated log should be sent in the request body.
-- **DELETE /api/logs/{id}**: Delete a log by its identifier.
-- **DELETE /api/logs**: Delete all logs.
-- **GET /api/logs/links**: Retrieve logs that are links.
-- **GET /api/log/searchByAuthor**: Search logs by author. Can pass the `author` parameter for searching.
+- **GET /api/authors**: Retrieve all authors.
+- **GET /api/authors/{id}**: Retrieve an author by ID.
+- **POST /api/authors**: Add a new author.
+- **PUT /api/authors/{id}**: Update an existing author.
+- **DELETE /api/authors/{id}**: Delete an author.
 
-### QR Code Management
+### Book Management
 
-- **GET /api/generateQRCode**: Generate a QR code based on the provided text. Accepts a `text` parameter containing the text for generating the QR code.
-- **GET /api/qrCodeDescription/{id}**: Generate a QR code based on the description of a log. Accepts an `id` parameter identifying the log, and generates a QR code based on the description.
+- **GET /api/books**: Retrieve all books.
+- **GET /api/books/{id}**: Retrieve a book by ID.
+- **POST /api/books/{authorId}**: Add a new book for a specific author.
+- **PUT /api/books/{id}**: Update an existing book.
+- **DELETE /api/books/{id}**: Delete a book.
+- **POST /api/books/{bookId}/tags/{tagId}**: Add a tag to a book.
+- **GET /api/books/{bookId}/tags**: Retrieve tags associated with a book.
+
+### Tag Management
+
+- **GET /api/tags**: Retrieve all tags.
+- **GET /api/tags/{id}**: Retrieve a tag by ID.
+- **POST /api/tags**: Add a new tag.
+- **PUT /api/tags/{id}**: Update an existing tag.
+- **DELETE /api/tags/{id}**: Delete a tag.
 
 ## Database Description
 
-This application uses a PostgreSQL database. It contains a table named `logs` with the following fields:
+The application uses a PostgreSQL database with the following relationships:
 
-- `id`: Unique event identifier (type `long`).
-- `Author`: Event author (type `String`).
-- `QRdescription`: Description of the event for generating a QR code (type `String`).
-- `Link`: Flag indicating whether the event is a link (type `boolean`).
+- **Author-Book Relationship**: One-to-many relationship where one author can have multiple books.
+- **Book-Tag Relationship**: Many-to-many relationship where one book can have multiple tags, and one tag can be associated with multiple books.
 
 ## Dependencies
 
 - **Spring Boot**: For building the application.
 - **Spring Web**: For building RESTful APIs.
 - **PostgreSQL Driver**: Driver for interacting with the PostgreSQL database.
-- **Java Persistence API (JPA)**: For working with object-relational mapping.
+- **Java Persistence API (JPA)**: For object-relational mapping.
 - **Apache Maven**: For managing dependencies and building the project.
 
 ## How to Run
 
 1. Clone the repository:
     ```
-    git clone https://github.com/vladik095/JAVA.git
+    git clone https://github.com/vladik095/booksManager.git
     ```
 
 2. Build the project:
@@ -58,53 +66,23 @@ This application uses a PostgreSQL database. It contains a table named `logs` wi
 
 ## Usage Examples
 
-- **Retrieve all logs**:
+- **Retrieve all authors**:
     ```
-    GET /api/logs
-    ```
-
-- **Retrieve a log by its identifier**:
-    ```
-    GET /api/logs/{id}
+    GET /api/authors
     ```
 
-- **Create a new log**:
+- **Retrieve a book by its identifier**:
     ```
-    POST /api/logs
-    ```
-
-- **Update an existing log**:
-    ```
-    PUT /api/logs/{id}
+    GET /api/books/{id}
     ```
 
-- **Delete a log by its identifier**:
+- **Add a new tag**:
     ```
-    DELETE /api/logs/{id}
-    ```
-
-- **Delete all logs**:
-    ```
-    DELETE /api/logs
+    POST /api/tags
     ```
 
-- **Retrieve logs that are links**:
+- **Update an existing author**:
     ```
-    GET /api/logs/links
-    ```
-
-- **Search logs by author**:
-    ```
-    GET /api/log/searchByAuthor?author={author}
-    ```
-
-- **Generate a QR code using URL**:
-    ```
-    GET /api/generateQRCode?text={your_text_here}
-    ```
-
-- **Generate a QR code based on log description**:
-    ```
-    GET /api/qrCodeDescription/{id}
+    PUT /api/authors/{id}
     ```
 
