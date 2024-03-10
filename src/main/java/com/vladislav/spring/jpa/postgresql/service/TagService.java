@@ -31,8 +31,6 @@ public class TagService {
     }
 
     public void updateTag(Long id, Tag tag) {
-        Tag existingTag = tagRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Tag with id " + id + " not found"));
         tag.setId(id);
         tagRepository.save(tag);
     }

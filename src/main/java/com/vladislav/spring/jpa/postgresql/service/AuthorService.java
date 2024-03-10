@@ -34,8 +34,6 @@ public class AuthorService {
     }
 
     public void updateAuthor(Long id, Author updatedAuthor) {
-        Author author = authorRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Author with id " + id + " not found"));
         updatedAuthor.setId(id);
         authorRepository.save(updatedAuthor);
     }

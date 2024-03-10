@@ -22,11 +22,10 @@ public class Tag {
     @Column(name = "name")
     private String name;
 
-    @JsonIgnore // Игнорируем сериализацию полей при сериализации в JSON
+    @JsonIgnore
     @ManyToMany(mappedBy = "tags")
     private Set<Book> books = new HashSet<>();
 
-    // Конструкторы
     public Tag() {
     }
 
@@ -34,7 +33,6 @@ public class Tag {
         this.name = name;
     }
 
-    // Геттеры и сеттеры
     public Long getId() {
         return id;
     }

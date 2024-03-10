@@ -14,6 +14,9 @@ import java.util.Set;
 
 @Service
 public class BookService {
+
+    private static final String NOT_FOUND_MESSAGE = " not found";
+
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
     private final TagRepository tagRepository;
@@ -31,13 +34,13 @@ public class BookService {
 
     public Book getBookById(Long id) {
         return bookRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Book with id " + id + " not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Book with id " + id + NOT_FOUND_MESSAGE));
     }
 
     public Book addBook(Long authorId, Book book) {
         Author author = authorRepository.findById(authorId)
                 .orElseThrow(() -> new IllegalArgumentException(
-                        "Author with id " + authorId + " not found"));
+                        "Author with id " + authorId + NOT_FOUND_MESSAGE));
         book.setAuthor(author);
         return bookRepository.save(book);
     }
@@ -47,25 +50,22 @@ public class BookService {
     }
 
     public void updateBook(Long id, Book updatedBook) {
-        Book book = bookRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Book with id " + id + " not found"));
         updatedBook.setId(id);
         bookRepository.save(updatedBook);
     }
 
     public void addTagToBook(Long bookId, Long tagId) {
         Book book = bookRepository.findById(bookId)
-                .orElseThrow(() -> new RuntimeException("Book not found"));
+                .orElseThrow(() -> new RuntimeException("Book" + NOT_FOUND_MESSAGE));
         Tag tag = tagRepository.findById(tagId)
-                .orElseThrow(() -> new RuntimeException("Tag not found"));
-
+                .orElseThrow(() -> new RuntimeException("Tag" + NOT_FOUND_MESSAGE));
         book.getTags().add(tag);
         bookRepository.save(book);
     }
 
     public Set<Book> getBooksByTagId(Long tagId) {
         Tag tag = tagRepository.findById(tagId)
-                .orElseThrow(() -> new IllegalArgumentException("Tag with id " + tagId + " not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Tag with id " + tagId + NOT_FOUND_MESSAGE));
         return tag.getBooks();
     }
 }
