@@ -1,5 +1,7 @@
 package com.vladislav.spring.jpa.postgresql.service;
 
+import com.vladislav.spring.jpa.postgresql.dto.BookDto;
+import com.vladislav.spring.jpa.postgresql.dto.TagDto;
 import com.vladislav.spring.jpa.postgresql.model.Author;
 import com.vladislav.spring.jpa.postgresql.model.Book;
 import com.vladislav.spring.jpa.postgresql.model.Tag;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class BookService {
@@ -28,30 +31,43 @@ public class BookService {
         this.tagRepository = tagRepository;
     }
 
-    public List<Book> getAllBooks() {
-        return bookRepository.findAll();
+    public List<BookDto> getAllBooks() {
+        return bookRepository.findAll().stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
     }
 
-    public Book getBookById(Long id) {
-        return bookRepository.findById(id)
+    public BookDto getBookById(Long id) {
+        Book book = bookRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Book with id " + id + NOT_FOUND_MESSAGE));
+        return convertToDto(book);
     }
 
-    public Book addBook(Long authorId, Book book) {
+    public BookDto addBook(Long authorId, BookDto bookDto) {
         Author author = authorRepository.findById(authorId)
                 .orElseThrow(() -> new IllegalArgumentException(
                         "Author with id " + authorId + NOT_FOUND_MESSAGE));
+
+        Book book = new Book();
+        book.setTitle(bookDto.getTitle());
+
+        // Присваиваем книге автора
         book.setAuthor(author);
-        return bookRepository.save(book);
+
+        // Добавляем книгу в список книг автора
+        author.getBooks().add(book);
+
+        return convertToDto(bookRepository.save(book));
     }
 
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
     }
 
-    public void updateBook(Long id, Book updatedBook) {
-        updatedBook.setId(id);
-        bookRepository.save(updatedBook);
+    public void updateBook(Long id, BookDto bookDto) {
+        Book book = convertToEntity(bookDto);
+        book.setId(id);
+        bookRepository.save(book);
     }
 
     public void addTagToBook(Long bookId, Long tagId) {
@@ -63,9 +79,42 @@ public class BookService {
         bookRepository.save(book);
     }
 
-    public Set<Book> getBooksByTagId(Long tagId) {
+    public Set<TagDto> getTagsByBookId(Long bookId) {
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new IllegalArgumentException("Book with id " + bookId + NOT_FOUND_MESSAGE));
+        return book.getTags().stream()
+                .map(this::convertToTagDto)
+                .collect(Collectors.toSet());
+    }
+
+    public Set<BookDto> getBooksByTagId(Long tagId) {
         Tag tag = tagRepository.findById(tagId)
                 .orElseThrow(() -> new IllegalArgumentException("Tag with id " + tagId + NOT_FOUND_MESSAGE));
-        return tag.getBooks();
+        return tag.getBooks().stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toSet());
+    }
+
+    private Book convertToEntity(BookDto bookDto) {
+        Book book = new Book();
+        book.setId(bookDto.getId());
+        book.setTitle(bookDto.getTitle());
+        // Необходимо обработать автора и теги, в зависимости от вашей логики
+        return book;
+    }
+
+    private BookDto convertToDto(Book book) {
+        BookDto bookDto = new BookDto();
+        bookDto.setId(book.getId());
+        bookDto.setTitle(book.getTitle());
+        // Необходимо обработать автора и теги, в зависимости от вашей логики
+        return bookDto;
+    }
+
+    private TagDto convertToTagDto(Tag tag) {
+        TagDto tagDto = new TagDto();
+        tagDto.setId(tag.getId());
+        tagDto.setName(tag.getName());
+        return tagDto;
     }
 }
