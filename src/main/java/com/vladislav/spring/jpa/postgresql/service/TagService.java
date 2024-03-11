@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class TagService {
@@ -22,7 +21,7 @@ public class TagService {
     public List<TagDto> getAllTags() {
         return tagRepository.findAll().stream()
                 .map(this::convertToDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public TagDto getTagById(Long id) {
@@ -52,7 +51,6 @@ public class TagService {
         Tag tag = new Tag();
         tag.setId(tagDto.getId());
         tag.setName(tagDto.getName());
-        // Необходимо обработать книги, в зависимости от вашей логики
         return tag;
     }
 
@@ -60,7 +58,6 @@ public class TagService {
         TagDto tagDto = new TagDto();
         tagDto.setId(tag.getId());
         tagDto.setName(tag.getName());
-        // Необходимо обработать книги, в зависимости от вашей логики
         return tagDto;
     }
 }

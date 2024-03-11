@@ -34,7 +34,7 @@ public class BookService {
     public List<BookDto> getAllBooks() {
         return bookRepository.findAll().stream()
                 .map(this::convertToDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public BookDto getBookById(Long id) {
@@ -50,11 +50,7 @@ public class BookService {
 
         Book book = new Book();
         book.setTitle(bookDto.getTitle());
-
-        // Присваиваем книге автора
         book.setAuthor(author);
-
-        // Добавляем книгу в список книг автора
         author.getBooks().add(book);
 
         return convertToDto(bookRepository.save(book));
@@ -99,7 +95,7 @@ public class BookService {
         Book book = new Book();
         book.setId(bookDto.getId());
         book.setTitle(bookDto.getTitle());
-        // Необходимо обработать автора и теги, в зависимости от вашей логики
+
         return book;
     }
 
@@ -107,7 +103,7 @@ public class BookService {
         BookDto bookDto = new BookDto();
         bookDto.setId(book.getId());
         bookDto.setTitle(book.getTitle());
-        // Необходимо обработать автора и теги, в зависимости от вашей логики
+
         return bookDto;
     }
 
