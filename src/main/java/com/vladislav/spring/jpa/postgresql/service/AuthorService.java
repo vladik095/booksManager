@@ -66,9 +66,8 @@ public class AuthorService {
         bookDto.setId(book.getId());
         bookDto.setTitle(book.getTitle());
 
-        // Преобразование тегов книги в DTO
         Set<TagDto> tagDtos = book.getTags().stream()
-                .map(this::convertTagToDto) // предполагается, что у вас есть этот метод
+                .map(this::convertTagToDto) 
                 .collect(Collectors.toSet());
         bookDto.setTags(tagDtos);
 
@@ -80,9 +79,8 @@ public class AuthorService {
         authorDto.setId(author.getId());
         authorDto.setName(author.getName());
 
-        // Преобразование книг автора в DTO
         Set<BookDto> bookDtos = author.getBooks().stream()
-                .map(this::convertBookToDto) // предполагается, что у вас есть этот метод
+                .map(this::convertBookToDto) 
                 .collect(Collectors.toSet());
         authorDto.setBooks(bookDtos);
 
