@@ -13,32 +13,26 @@ public class AuthorDto implements DtoWithBooks {
     private String name;
     private Set<BookDto> books = new HashSet<>();
 
-    @Override
     public Long getId() {
         return id;
     }
 
-    @Override
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Override
     public String getName() {
         return name;
     }
 
-    @Override
     public void setName(String name) {
         this.name = name;
     }
 
-    @Override
     public Set<BookDto> getBooks() {
         return books;
     }
 
-    @Override
     public void setBooks(Set<BookDto> books) {
         this.books = books;
     }
