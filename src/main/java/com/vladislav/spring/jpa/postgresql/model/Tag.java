@@ -1,6 +1,5 @@
 package com.vladislav.spring.jpa.postgresql.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -11,7 +10,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-@ToString(exclude = { "author", "tags" })
+@ToString(exclude = "books")
 @Entity
 @Table(name = "tag")
 public class Tag {
@@ -22,7 +21,6 @@ public class Tag {
     @Column(name = "name")
     private String name;
 
-    @JsonIgnore
     @ManyToMany(mappedBy = "tags")
     private Set<Book> books = new HashSet<>();
 
@@ -55,5 +53,9 @@ public class Tag {
 
     public void setBooks(Set<Book> books) {
         this.books = books;
+    }
+
+    public String getTagName() {
+        return name;
     }
 }

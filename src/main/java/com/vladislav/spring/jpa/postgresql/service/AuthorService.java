@@ -1,15 +1,9 @@
 package com.vladislav.spring.jpa.postgresql.service;
 
 import com.vladislav.spring.jpa.postgresql.dto.AuthorDto;
-import com.vladislav.spring.jpa.postgresql.dto.BookDto;
-import com.vladislav.spring.jpa.postgresql.dto.TagDto;
 import com.vladislav.spring.jpa.postgresql.model.Author;
-import com.vladislav.spring.jpa.postgresql.model.Book;
 import com.vladislav.spring.jpa.postgresql.repository.AuthorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.Set;
-import com.vladislav.spring.jpa.postgresql.model.Tag;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,16 +12,17 @@ import java.util.stream.Collectors;
 public class AuthorService {
 
     private final AuthorRepository authorRepository;
+    private final BookService bookService;
 
-    @Autowired
-    public AuthorService(AuthorRepository authorRepository) {
+    public AuthorService(AuthorRepository authorRepository, BookService bookService) {
         this.authorRepository = authorRepository;
+        this.bookService = bookService;
     }
 
     public List<AuthorDto> getAllAuthors() {
         return authorRepository.findAll().stream()
                 .map(this::convertToDto)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public AuthorDto getAuthorById(Long id) {
@@ -54,6 +49,7 @@ public class AuthorService {
         authorRepository.save(existingAuthor);
     }
 
+<<<<<<< HEAD
     private TagDto convertTagToDto(Tag tag) {
         TagDto tagDto = new TagDto();
         tagDto.setId(tag.getId());
@@ -74,16 +70,24 @@ public class AuthorService {
         return bookDto;
     }
 
+=======
+>>>>>>> 171ceee (Add bookCache)
     private AuthorDto convertToDto(Author author) {
         AuthorDto authorDto = new AuthorDto();
         authorDto.setId(author.getId());
         authorDto.setName(author.getName());
+<<<<<<< HEAD
 
         Set<BookDto> bookDtos = author.getBooks().stream()
                 .map(this::convertBookToDto) 
                 .collect(Collectors.toSet());
         authorDto.setBooks(bookDtos);
 
+=======
+        authorDto.setBooks(author.getBooks().stream()
+                .map(bookService::convertToDto)
+                .collect(Collectors.toSet()));
+>>>>>>> 171ceee (Add bookCache)
         return authorDto;
     }
 

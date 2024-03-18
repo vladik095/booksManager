@@ -3,7 +3,6 @@ package com.vladislav.spring.jpa.postgresql.service;
 import com.vladislav.spring.jpa.postgresql.dto.TagDto;
 import com.vladislav.spring.jpa.postgresql.model.Tag;
 import com.vladislav.spring.jpa.postgresql.repository.TagRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +12,6 @@ public class TagService {
 
     private final TagRepository tagRepository;
 
-    @Autowired
     public TagService(TagRepository tagRepository) {
         this.tagRepository = tagRepository;
     }
@@ -47,6 +45,13 @@ public class TagService {
         tagRepository.deleteById(id);
     }
 
+    private TagDto convertToDto(Tag tag) {
+        TagDto tagDto = new TagDto();
+        tagDto.setId(tag.getId());
+        tagDto.setName(tag.getName());
+        return tagDto;
+    }
+
     private Tag convertToEntity(TagDto tagDto) {
         Tag tag = new Tag();
         tag.setId(tagDto.getId());
@@ -54,10 +59,4 @@ public class TagService {
         return tag;
     }
 
-    private TagDto convertToDto(Tag tag) {
-        TagDto tagDto = new TagDto();
-        tagDto.setId(tag.getId());
-        tagDto.setName(tag.getName());
-        return tagDto;
-    }
 }

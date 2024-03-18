@@ -1,13 +1,11 @@
 package com.vladislav.spring.jpa.postgresql.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Getter
@@ -23,7 +21,6 @@ public class Author {
     @Column(name = "name")
     private String name;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Book> books = new HashSet<>();
 
@@ -56,21 +53,5 @@ public class Author {
 
     public void setBooks(Set<Book> books) {
         this.books = books;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof Author))
-            return false;
-        Author author = (Author) o;
-        return Objects.equals(getId(), author.getId()) &&
-                Objects.equals(getName(), author.getName());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getName());
     }
 }

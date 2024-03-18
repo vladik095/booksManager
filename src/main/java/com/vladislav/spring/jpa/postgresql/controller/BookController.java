@@ -2,7 +2,6 @@ package com.vladislav.spring.jpa.postgresql.controller;
 
 import com.vladislav.spring.jpa.postgresql.dto.BookDto;
 import com.vladislav.spring.jpa.postgresql.service.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.vladislav.spring.jpa.postgresql.dto.TagDto;
 
@@ -15,7 +14,6 @@ public class BookController {
 
     private final BookService bookService;
 
-    @Autowired
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }
@@ -58,5 +56,15 @@ public class BookController {
     @GetMapping("/tags/{tagId}")
     public Set<BookDto> getBooksByTagId(@PathVariable Long tagId) {
         return bookService.getBooksByTagId(tagId);
+    }
+
+    @DeleteMapping("/{bookId}/tags/{tagId}")
+    public void deleteTagFromBook(@PathVariable Long bookId, @PathVariable Long tagId) {
+        bookService.deleteTagFromBook(bookId, tagId);
+    }
+
+    @GetMapping("/search")
+    public List<BookDto> getBooksByTitleContaining(@RequestParam("keyword") String keyword) {
+        return bookService.findBooksByTitleContaining(keyword);
     }
 }

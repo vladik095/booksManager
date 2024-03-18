@@ -1,14 +1,26 @@
 package com.vladislav.spring.jpa.postgresql.dto;
 
-import java.util.Set;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
+import java.util.Set;
+
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@JsonIdentityReference(alwaysAsId = false)
 public class BookDto {
 
     private Long id;
     private String title;
     private Set<TagDto> tags;
+
+    public BookDto() {
+    }
+
+    public BookDto(Long id, String title) {
+        this.id = id;
+        this.title = title;
+    }
 
     public Long getId() {
         return id;

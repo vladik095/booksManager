@@ -1,12 +1,10 @@
 package com.vladislav.spring.jpa.postgresql.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.Objects;
 import java.util.Set;
 
 @Getter
@@ -22,7 +20,6 @@ public class Book {
     @Column(name = "title")
     private String title;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     private Author author;
@@ -72,21 +69,8 @@ public class Book {
         this.tags = tags;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof Book))
-            return false;
-        Book book = (Book) o;
-        return Objects.equals(getId(), book.getId()) &&
-                Objects.equals(getTitle(), book.getTitle()) &&
-                Objects.equals(getAuthor(), book.getAuthor()) &&
-                Objects.equals(getTags(), book.getTags());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getTitle(), getAuthor(), getTags());
+    public void removeTag(Tag tag) {
+        this.tags.remove(tag);
+        tag.getBooks().remove(this);
     }
 }

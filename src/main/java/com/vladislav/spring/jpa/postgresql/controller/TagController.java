@@ -2,7 +2,6 @@ package com.vladislav.spring.jpa.postgresql.controller;
 
 import com.vladislav.spring.jpa.postgresql.dto.TagDto;
 import com.vladislav.spring.jpa.postgresql.service.TagService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,7 +12,6 @@ public class TagController {
 
     private final TagService tagService;
 
-    @Autowired
     public TagController(TagService tagService) {
         this.tagService = tagService;
     }

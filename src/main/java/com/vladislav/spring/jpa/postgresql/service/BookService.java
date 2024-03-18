@@ -8,8 +8,9 @@ import com.vladislav.spring.jpa.postgresql.model.Tag;
 import com.vladislav.spring.jpa.postgresql.repository.AuthorRepository;
 import com.vladislav.spring.jpa.postgresql.repository.BookRepository;
 import com.vladislav.spring.jpa.postgresql.repository.TagRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.vladislav.spring.jpa.postgresql.error.ResourceNotFoundException;
+import com.vladislav.spring.jpa.postgresql.cache.BookCache;
 
 import java.util.List;
 import java.util.Set;
@@ -23,18 +24,21 @@ public class BookService {
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
     private final TagRepository tagRepository;
+    private final BookCache bookCache;
 
-    @Autowired
-    public BookService(BookRepository bookRepository, AuthorRepository authorRepository, TagRepository tagRepository) {
+    public BookService(BookRepository bookRepository, AuthorRepository authorRepository, TagRepository tagRepository,
+            BookCache bookCache) {
         this.bookRepository = bookRepository;
         this.authorRepository = authorRepository;
         this.tagRepository = tagRepository;
+        this.bookCache = bookCache;
+
     }
 
     public List<BookDto> getAllBooks() {
         return bookRepository.findAll().stream()
                 .map(this::convertToDto)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public BookDto getBookById(Long id) {
@@ -91,20 +95,26 @@ public class BookService {
                 .collect(Collectors.toSet());
     }
 
-    private Book convertToEntity(BookDto bookDto) {
-        Book book = new Book();
-        book.setId(bookDto.getId());
-        book.setTitle(bookDto.getTitle());
-
-        return book;
-    }
-
-    private BookDto convertToDto(Book book) {
+    public BookDto convertToDto(Book book) {
         BookDto bookDto = new BookDto();
         bookDto.setId(book.getId());
         bookDto.setTitle(book.getTitle());
 
+        if (book.getTags() != null) {
+            Set<TagDto> tagDtos = book.getTags().stream()
+                    .map(this::convertToTagDto)
+                    .collect(Collectors.toSet());
+            bookDto.setTags(tagDtos);
+        }
+
         return bookDto;
+    }
+
+    private Book convertToEntity(BookDto bookDto) {
+        Book book = new Book();
+        book.setId(bookDto.getId());
+        book.setTitle(bookDto.getTitle());
+        return book;
     }
 
     private TagDto convertToTagDto(Tag tag) {
@@ -113,4 +123,34 @@ public class BookService {
         tagDto.setName(tag.getName());
         return tagDto;
     }
+
+    public void deleteTagFromBook(Long bookId, Long tagId) {
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new ResourceNotFoundException("Book", "id", bookId));
+
+        Tag tag = tagRepository.findById(tagId)
+                .orElseThrow(() -> new ResourceNotFoundException("Tag", "id", tagId));
+
+        book.removeTag(tag);
+        bookRepository.save(book);
+    }
+
+    public List<BookDto> findBooksByTitleContaining(String keyword) {
+        List<Long> cachedBookIds = bookCache.getBooksFromCache(keyword);
+        if (!cachedBookIds.isEmpty()) {
+            List<Book> books = bookRepository.findAllById(cachedBookIds);
+            bookCache.printCacheContents();
+            return books.stream()
+                    .map(this::convertToDto)
+                    .collect(Collectors.toList());
+        }
+        List<Book> books = bookRepository.findByTitleContaining(keyword);
+        List<BookDto> bookDtos = books.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+        bookCache.addToCache(keyword, bookDtos.stream().map(BookDto::getId).collect(Collectors.toList()));
+
+        return bookDtos;
+    }
+
 }

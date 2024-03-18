@@ -2,7 +2,6 @@ package com.vladislav.spring.jpa.postgresql.controller;
 
 import com.vladislav.spring.jpa.postgresql.dto.AuthorDto;
 import com.vladislav.spring.jpa.postgresql.service.AuthorService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,7 +12,6 @@ public class AuthorController {
 
     private final AuthorService authorService;
 
-    @Autowired
     public AuthorController(AuthorService authorService) {
         this.authorService = authorService;
     }
