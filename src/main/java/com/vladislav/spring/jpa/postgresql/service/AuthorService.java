@@ -22,7 +22,7 @@ public class AuthorService {
     public List<AuthorDto> getAllAuthors() {
         return authorRepository.findAll().stream()
                 .map(this::convertToDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public AuthorDto getAuthorById(Long id) {
