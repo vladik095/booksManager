@@ -49,45 +49,13 @@ public class AuthorService {
         authorRepository.save(existingAuthor);
     }
 
-<<<<<<< HEAD
-    private TagDto convertTagToDto(Tag tag) {
-        TagDto tagDto = new TagDto();
-        tagDto.setId(tag.getId());
-        tagDto.setName(tag.getName());
-        return tagDto;
-    }
-
-    private BookDto convertBookToDto(Book book) {
-        BookDto bookDto = new BookDto();
-        bookDto.setId(book.getId());
-        bookDto.setTitle(book.getTitle());
-
-        Set<TagDto> tagDtos = book.getTags().stream()
-                .map(this::convertTagToDto) 
-                .collect(Collectors.toSet());
-        bookDto.setTags(tagDtos);
-
-        return bookDto;
-    }
-
-=======
->>>>>>> 171ceee (Add bookCache)
     private AuthorDto convertToDto(Author author) {
         AuthorDto authorDto = new AuthorDto();
         authorDto.setId(author.getId());
         authorDto.setName(author.getName());
-<<<<<<< HEAD
-
-        Set<BookDto> bookDtos = author.getBooks().stream()
-                .map(this::convertBookToDto) 
-                .collect(Collectors.toSet());
-        authorDto.setBooks(bookDtos);
-
-=======
         authorDto.setBooks(author.getBooks().stream()
                 .map(bookService::convertToDto)
                 .collect(Collectors.toSet()));
->>>>>>> 171ceee (Add bookCache)
         return authorDto;
     }
 

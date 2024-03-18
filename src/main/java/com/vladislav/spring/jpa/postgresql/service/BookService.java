@@ -38,7 +38,7 @@ public class BookService {
     public List<BookDto> getAllBooks() {
         return bookRepository.findAll().stream()
                 .map(this::convertToDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public BookDto getBookById(Long id) {
@@ -142,13 +142,13 @@ public class BookService {
             bookCache.printCacheContents();
             return books.stream()
                     .map(this::convertToDto)
-                    .collect(Collectors.toList());
+                    .toList();
         }
         List<Book> books = bookRepository.findByTitleContaining(keyword);
         List<BookDto> bookDtos = books.stream()
                 .map(this::convertToDto)
-                .collect(Collectors.toList());
-        bookCache.addToCache(keyword, bookDtos.stream().map(BookDto::getId).collect(Collectors.toList()));
+                .toList();
+        bookCache.addToCache(keyword, bookDtos.stream().map(BookDto::getId).toList());
 
         return bookDtos;
     }

@@ -56,6 +56,7 @@ public class Tag {
     }
 
     public String getTagName() {
-        return name;
+        return name + "_tag";
     }
+
 }
