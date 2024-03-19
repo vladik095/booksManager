@@ -3,7 +3,7 @@ package com.vladislav.spring.jpa.postgresql.cache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class BookCache {
     private static final int MAX_CACHE_SIZE = 2;
     private final Map<String, List<Long>> cache = new ConcurrentHashMap<>();
-    private final Map<String, Long> accessOrder = new HashMap<>();
+    private final Map<String, Long> accessOrder = new LinkedHashMap<>();
     private final Logger logger = LoggerFactory.getLogger(BookCache.class);
 
     public synchronized void addToCache(String keyword, List<Long> bookIds) {
