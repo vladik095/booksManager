@@ -101,15 +101,19 @@ public class BookController {
     @GetMapping("/search")
     public ResponseEntity<List<BookDto>> getBooksByTitleContaining(@RequestParam("keyword") String keyword) {
         List<BookDto> books = bookService.findBooksByTitleContaining(keyword);
-        logger.info("Books containing keyword '{}' fetched successfully.", sanitize(keyword));
+        String sanitizedKeyword = keyword;
+        if (shouldSanitize(keyword)) {
+            sanitizedKeyword = sanitize(keyword);
+        }
+        logger.info("Books containing keyword '{}' fetched successfully.", sanitizedKeyword);
         return ResponseEntity.ok(books);
     }
 
+    private boolean shouldSanitize(String input) {
+        return input.matches(".*[^a-zA-Z0-9].*");
+    }
+
     private String sanitize(String input) {
-        // Implement your sanitization logic here, such as replacing sensitive
-        // characters
-        // For example, you could remove any characters that are not alphanumeric or
-        // replace them with a placeholder
         return input.replaceAll("[^a-zA-Z0-9]", "_");
     }
 
