@@ -105,12 +105,12 @@ public class BookController {
         if (shouldSanitize(keyword)) {
             sanitizedKeyword = sanitize(keyword);
         }
-        logger.info("Books containing sanitized keyword '{}' fetched successfully.", sanitizedKeyword);
+        logger.info("Books containing sanitized keyword fetched successfully.");
         return ResponseEntity.ok(books);
     }
 
     private boolean shouldSanitize(String input) {
-        return input.matches(".*[^a-zA-Z0-9].*");
+        return input.matches(".*+[^a-zA-Z0-9].*+");
     }
 
     private String sanitize(String input) {
