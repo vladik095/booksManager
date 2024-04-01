@@ -5,11 +5,12 @@ import com.vladislav.spring.jpa.postgresql.dto.TagDto;
 import com.vladislav.spring.jpa.postgresql.model.Author;
 import com.vladislav.spring.jpa.postgresql.model.Book;
 import com.vladislav.spring.jpa.postgresql.model.Tag;
+import com.vladislav.spring.jpa.postgresql.error.ResourceNotFoundException;
 import com.vladislav.spring.jpa.postgresql.repository.AuthorRepository;
 import com.vladislav.spring.jpa.postgresql.repository.BookRepository;
 import com.vladislav.spring.jpa.postgresql.repository.TagRepository;
 import org.springframework.stereotype.Service;
-import com.vladislav.spring.jpa.postgresql.error.ResourceNotFoundException;
+
 import com.vladislav.spring.jpa.postgresql.cache.BookCache;
 
 import java.util.List;
