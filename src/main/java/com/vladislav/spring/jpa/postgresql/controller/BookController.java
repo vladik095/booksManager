@@ -101,9 +101,8 @@ public class BookController {
     @GetMapping("/search")
     public ResponseEntity<List<BookDto>> getBooksByTitleContaining(@RequestParam("keyword") String keyword) {
         List<BookDto> books = bookService.findBooksByTitleContaining(keyword);
-        String sanitizedKeyword = keyword;
         if (shouldSanitize(keyword)) {
-            sanitizedKeyword = sanitize(keyword);
+            keyword = sanitize(keyword);
         }
         logger.info("Books containing sanitized keyword fetched successfully.");
         return ResponseEntity.ok(books);
