@@ -105,7 +105,7 @@ public class BookController {
         if (shouldSanitize(keyword)) {
             sanitizedKeyword = sanitize(keyword);
         }
-        logger.info("Books containing keyword '{}' fetched successfully.", sanitizedKeyword);
+        logger.info("Books containing sanitized keyword '{}' fetched successfully.", sanitizedKeyword);
         return ResponseEntity.ok(books);
     }
 
