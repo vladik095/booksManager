@@ -45,7 +45,7 @@ public class BookController {
     }
 
     @PostMapping("/{authorId}")
-    public ResponseEntity<?> addBook(@PathVariable Long authorId, @RequestBody BookDto bookDto) {
+    public ResponseEntity<String> addBook(@PathVariable Long authorId, @RequestBody BookDto bookDto) {
         BookDto newBook = bookService.addBook(authorId, bookDto);
         if (newBook != null) {
             logger.info("Book saved successfully.");
@@ -101,7 +101,16 @@ public class BookController {
     @GetMapping("/search")
     public ResponseEntity<List<BookDto>> getBooksByTitleContaining(@RequestParam("keyword") String keyword) {
         List<BookDto> books = bookService.findBooksByTitleContaining(keyword);
-        logger.info("Books containing keyword '{}' fetched successfully.", keyword);
+        logger.info("Books containing keyword '{}' fetched successfully.", sanitize(keyword));
         return ResponseEntity.ok(books);
     }
+
+    private String sanitize(String input) {
+        // Implement your sanitization logic here, such as replacing sensitive
+        // characters
+        // For example, you could remove any characters that are not alphanumeric or
+        // replace them with a placeholder
+        return input.replaceAll("[^a-zA-Z0-9]", "_");
+    }
+
 }

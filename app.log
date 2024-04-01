@@ -174,3 +174,7 @@
 2024-04-02 01:59:31.749  INFO 135944 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2024-04-02 01:59:31.752  INFO 135944 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
 2024-04-02 01:59:31.779 ERROR 135944 --- [http-nio-8080-exec-1] c.v.s.j.p.exception.ExceptionManager     : Exception occurred: ErrorMessage(statusCode=500, timestamp=Tue Apr 02 01:59:31 MSK 2024, message=Required request body is missing: public org.springframework.http.ResponseEntity<com.vladislav.spring.jpa.postgresql.dto.AuthorDto> com.vladislav.spring.jpa.postgresql.controller.AuthorController.saveAuthor(com.vladislav.spring.jpa.postgresql.dto.AuthorDto), description=uri=/authors/save)
+2024-04-02 02:03:07.971  INFO 135944 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
+2024-04-02 02:03:07.971  INFO 135944 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-02 02:03:07.973  INFO 135944 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-04-02 02:03:07.980  INFO 135944 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
