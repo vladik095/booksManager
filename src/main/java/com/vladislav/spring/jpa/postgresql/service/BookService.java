@@ -12,7 +12,6 @@ import com.vladislav.spring.jpa.postgresql.repository.BookRepository;
 import com.vladislav.spring.jpa.postgresql.repository.TagRepository;
 import java.util.List;
 import java.util.Collections;
-import java.util.Optional;
 import java.util.HashSet;
 
 import java.util.Set;
@@ -22,8 +21,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BookService {
-
+    private static final String BOOK_NOT_FOUND_MESSAGE = "Book with id ";
     private static final String NOT_FOUND_MESSAGE = " not found";
+    private static final String TAG_NOT_FOUND_MESSAGE = "Tag with id ";
 
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
@@ -47,7 +47,7 @@ public class BookService {
 
     public BookDto getBookById(Long id) {
         Book book = bookRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Book with id " + id + NOT_FOUND_MESSAGE));
+                .orElseThrow(() -> new IllegalArgumentException(BOOK_NOT_FOUND_MESSAGE + id));
         return convertToDto(book);
     }
 
@@ -56,28 +56,22 @@ public class BookService {
                 .orElseThrow(() -> new IllegalArgumentException(
                         "Author with id " + authorId + NOT_FOUND_MESSAGE));
 
-        // Create a new Book object
         Book book = new Book();
 
-        // Set the title and author for the book
         book.setTitle(bookDto.getTitle());
         book.setAuthor(author);
 
-        // Initialize the tags set if it's null
         if (bookDto.getTags() != null) {
             book.setTags(bookDto.getTags().stream()
                     .map(tagDto -> tagRepository.findById(tagDto.getId())
                             .orElseThrow(() -> new IllegalArgumentException(
-                                    "Tag with id " + tagDto.getId() + NOT_FOUND_MESSAGE)))
+                                    TAG_NOT_FOUND_MESSAGE + tagDto.getId())))
                     .collect(Collectors.toSet()));
         } else {
             book.setTags(new HashSet<>());
         }
-
-        // Add the book to the author's list of books
         author.getBooks().add(book);
 
-        // Save the book in the repository and return its DTO
         return convertToDto(bookRepository.save(book));
     }
 
@@ -86,24 +80,20 @@ public class BookService {
     }
 
     public void updateBook(Long id, BookDto bookDto) {
-        // Retrieve the book from the database by its ID
+
         Book existingBook = bookRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Book", "id", id));
 
-        // Update the book's title with the new title from the DTO
         existingBook.setTitle(bookDto.getTitle());
 
-        // Save the updated book back to the repository
         bookRepository.save(existingBook);
     }
 
     public void addTagToBook(Long bookId, Long tagId) {
         Book book = bookRepository.findById(bookId)
-                .orElseThrow(() -> new RuntimeException("Book with id " + bookId + NOT_FOUND_MESSAGE));
-
+                .orElseThrow(() -> new RuntimeException(BOOK_NOT_FOUND_MESSAGE + bookId));
         Tag tag = tagRepository.findById(tagId)
-                .orElseThrow(() -> new RuntimeException("Tag with id " + tagId + NOT_FOUND_MESSAGE));
-
+                .orElseThrow(() -> new RuntimeException(TAG_NOT_FOUND_MESSAGE + tagId));
         // Initialize the tags set if it's null
         if (book.getTags() == null) {
             book.setTags(new HashSet<>());
@@ -118,7 +108,8 @@ public class BookService {
 
     public Set<TagDto> getTagsByBookId(Long bookId) {
         Book book = bookRepository.findById(bookId)
-                .orElseThrow(() -> new IllegalArgumentException("Book with id " + bookId + NOT_FOUND_MESSAGE));
+                .orElseThrow(() -> new IllegalArgumentException(BOOK_NOT_FOUND_MESSAGE + bookId));
+
         return book.getTags().stream()
                 .map(this::convertToTagDto)
                 .collect(Collectors.toSet());
@@ -126,7 +117,8 @@ public class BookService {
 
     public Set<BookDto> getBooksByTagId(Long tagId) {
         Tag tag = tagRepository.findById(tagId)
-                .orElseThrow(() -> new IllegalArgumentException("Tag with id " + tagId + NOT_FOUND_MESSAGE));
+                .orElseThrow(() -> new IllegalArgumentException(TAG_NOT_FOUND_MESSAGE + tagId));
+
         return tag.getBooks().stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toSet());

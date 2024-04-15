@@ -5,12 +5,9 @@ import com.vladislav.spring.jpa.postgresql.dto.BookDto;
 import com.vladislav.spring.jpa.postgresql.model.Author;
 import com.vladislav.spring.jpa.postgresql.model.Book;
 import com.vladislav.spring.jpa.postgresql.repository.AuthorRepository;
-import java.util.HashSet;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -29,7 +26,7 @@ public class AuthorService {
     public List<AuthorDto> getAllAuthors() {
         return authorRepository.findAll().stream()
                 .map(this::convertToDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public AuthorDto getAuthorById(Long id) {
@@ -75,7 +72,7 @@ public class AuthorService {
     public List<AuthorDto> createOrUpdateAuthorsBulk(List<AuthorDto> authorList) {
         return authorList.stream()
                 .map(authorDto -> createOrUpdateAuthor(authorDto))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private AuthorDto createOrUpdateAuthor(AuthorDto authorDto) {
@@ -84,22 +81,21 @@ public class AuthorService {
             Optional<Author> existingAuthorOpt = authorRepository.findById(authorDto.getId());
             if (existingAuthorOpt.isPresent()) {
                 author = existingAuthorOpt.get();
-                // Обновляем данные существующего автора
+
                 author.setName(authorDto.getName());
-                // Очищаем список книг у автора перед обновлением
+
                 author.getBooks().clear();
             } else {
-                // Создаем нового автора
+
                 author = new Author();
                 author.setName(authorDto.getName());
             }
         } else {
-            // Создаем нового автора
+
             author = new Author();
             author.setName(authorDto.getName());
         }
 
-        // Проходим по списку книг и устанавливаем связь с автором
         for (BookDto bookDto : authorDto.getBooks()) {
             Book book = new Book();
             book.setTitle(bookDto.getTitle());

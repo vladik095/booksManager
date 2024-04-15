@@ -20,7 +20,6 @@ import java.util.List;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -286,8 +285,10 @@ class BookServiceTest {
         // Act & Assert
         assertThrows(ResourceNotFoundException.class, () -> {
             bookService.updateBook(1L, new BookDto());
-        });
-        verify(bookRepository, never()).save(any()); // Убеждаемся, что метод save не был вызван
+        }, "Expected updateBook to throw ResourceNotFoundException");
+
+        // Verify that the method save was not called
+        verify(bookRepository, never()).save(any());
     }
 
     @Test
@@ -333,10 +334,13 @@ class BookServiceTest {
         when(authorRepository.findById(anyLong())).thenReturn(Optional.empty());
 
         // Act & Assert
-        assertThrows(IllegalArgumentException.class, () -> {
-            bookService.addBook(1L, new BookDto()); // Попытка добавить книгу с несуществующим автором
-        });
-        verify(bookRepository, never()).save(any()); // Убеждаемся, что метод save не был вызван
+        assertThrows(IllegalArgumentException.class, this::attemptToAddBookWithNonExistentAuthor);
+        verify(bookRepository, never()).save(any()); // Verify that the save method was not called
+    }
+
+    // Method to attempt to add a book with a non-existent author
+    private void attemptToAddBookWithNonExistentAuthor() {
+        bookService.addBook(1L, new BookDto());
     }
 
     @Test
