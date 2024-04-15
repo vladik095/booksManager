@@ -1,12 +1,11 @@
 package com.vladislav.spring.jpa.postgresql.model;
 
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter

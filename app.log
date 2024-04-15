@@ -1,180 +1,837 @@
-2024-04-02 01:47:55.605  INFO 130721 --- [main] c.v.s.j.p.BookManagerApplication         : Starting BookManagerApplication using Java 17.0.9 on laptop with PID 130721 (/home/vladik095/Рабочий стол/JAVA 1/target/classes started by vladik095 in /home/vladik095/Рабочий стол/JAVA 1)
-2024-04-02 01:47:55.607  INFO 130721 --- [main] c.v.s.j.p.BookManagerApplication         : No active profile set, falling back to default profiles: default
-2024-04-02 01:47:56.055  INFO 130721 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-04-02 01:47:56.098  INFO 130721 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 3 JPA repository interfaces.
-2024-04-02 01:47:56.636  INFO 130721 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2024-04-02 01:47:56.644  INFO 130721 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-02 01:47:56.644  INFO 130721 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
-2024-04-02 01:47:56.696  INFO 130721 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-02 01:47:56.696  INFO 130721 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1049 ms
-2024-04-02 01:47:56.860  INFO 130721 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-04-02 01:47:56.890  INFO 130721 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
-2024-04-02 01:47:56.981  INFO 130721 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2024-04-02 01:47:57.040  INFO 130721 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-04-02 01:47:57.258  INFO 130721 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-04-02 01:47:57.275  INFO 130721 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
-2024-04-02 01:47:57.680  INFO 130721 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-04-02 01:47:57.685  INFO 130721 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-04-02 01:47:57.697  INFO 130721 --- [main] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is initialized
-2024-04-02 01:47:58.403  WARN 130721 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-04-02 01:47:59.388  INFO 130721 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2024-04-02 01:47:59.395  INFO 130721 --- [main] c.v.s.j.p.BookManagerApplication         : Started BookManagerApplication in 4.029 seconds (JVM running for 4.25)
-2024-04-02 01:48:06.929  INFO 130721 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-02 01:48:06.929  INFO 130721 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-02 01:48:06.930  INFO 130721 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-04-02 01:48:06.996  INFO 130721 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.BookController.addBook(Long,BookDto)), args=333,com.vladislav.spring.jpa.postgresql.dto.BookDto@1cc8528e
-2024-04-02 01:48:07.030 ERROR 130721 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After throwing execution(BookController.addBook(..)), exception: Author with id 333 not found
-2024-04-02 01:48:07.030  INFO 130721 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(BookController.addBook(..))
-2024-04-02 01:48:07.032 ERROR 130721 --- [http-nio-8080-exec-1] c.v.s.j.p.exception.ExceptionManager     : Exception occurred: ErrorMessage(statusCode=500, timestamp=Tue Apr 02 01:48:07 MSK 2024, message=Author with id 333 not found, description=uri=/api/books/333)
-2024-04-02 01:48:12.905  INFO 130721 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAuthorById(Long)), args=222
-2024-04-02 01:48:12.913 ERROR 130721 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After throwing execution(AuthorController.getAuthorById(..)), exception: Author with id 222 not found
-2024-04-02 01:48:12.914  INFO 130721 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAuthorById(..))
-2024-04-02 01:48:12.914 ERROR 130721 --- [http-nio-8080-exec-2] c.v.s.j.p.exception.ExceptionManager     : Exception occurred: ErrorMessage(statusCode=500, timestamp=Tue Apr 02 01:48:12 MSK 2024, message=Author with id 222 not found, description=uri=/authors/get/222)
-2024-04-02 01:51:12.208  INFO 130721 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.saveAuthor(AuthorDto)), args=com.vladislav.spring.jpa.postgresql.dto.AuthorDto@5338ecda
-2024-04-02 01:51:12.248  INFO 130721 --- [http-nio-8080-exec-3] c.v.s.j.p.controller.AuthorController    : Author saved successfully.
-2024-04-02 01:51:12.249  INFO 130721 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.saveAuthor(..))
-2024-04-02 01:51:12.250  INFO 130721 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.saveAuthor(..))
-2024-04-02 01:51:25.906  INFO 130721 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.saveAuthor(AuthorDto)), args=com.vladislav.spring.jpa.postgresql.dto.AuthorDto@27fc339f
-2024-04-02 01:51:25.917  INFO 130721 --- [http-nio-8080-exec-4] c.v.s.j.p.controller.AuthorController    : Author saved successfully.
-2024-04-02 01:51:25.917  INFO 130721 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.saveAuthor(..))
-2024-04-02 01:51:25.917  INFO 130721 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.saveAuthor(..))
-2024-04-02 01:55:09.462  INFO 130721 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
-2024-04-02 01:55:09.463  INFO 130721 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-04-02 01:55:09.464  INFO 130721 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-04-02 01:55:09.471  INFO 130721 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-04-02 01:55:09.958  INFO 133649 --- [main] c.v.s.j.p.BookManagerApplication         : Starting BookManagerApplication using Java 17.0.9 on laptop with PID 133649 (/home/vladik095/Рабочий стол/JAVA 1/target/classes started by vladik095 in /home/vladik095/Рабочий стол/JAVA 1)
-2024-04-02 01:55:09.959  INFO 133649 --- [main] c.v.s.j.p.BookManagerApplication         : No active profile set, falling back to default profiles: default
-2024-04-02 01:55:10.398  INFO 133649 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-04-02 01:55:10.441  INFO 133649 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 3 JPA repository interfaces.
-2024-04-02 01:55:10.950  INFO 133649 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2024-04-02 01:55:10.957  INFO 133649 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-02 01:55:10.958  INFO 133649 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
-2024-04-02 01:55:11.012  INFO 133649 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-02 01:55:11.012  INFO 133649 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1023 ms
-2024-04-02 01:55:11.157  INFO 133649 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-04-02 01:55:11.187  INFO 133649 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
-2024-04-02 01:55:11.276  INFO 133649 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2024-04-02 01:55:11.332  INFO 133649 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-04-02 01:55:11.580  INFO 133649 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-04-02 01:55:11.603  INFO 133649 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
-2024-04-02 01:55:12.013  INFO 133649 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-04-02 01:55:12.018  INFO 133649 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-04-02 01:55:12.031  INFO 133649 --- [main] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is initialized
-2024-04-02 01:55:12.785  WARN 133649 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-04-02 01:55:13.626  INFO 133649 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2024-04-02 01:55:13.634  INFO 133649 --- [main] c.v.s.j.p.BookManagerApplication         : Started BookManagerApplication in 3.913 seconds (JVM running for 4.114)
-2024-04-02 01:55:14.591  INFO 133649 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-02 01:55:14.591  INFO 133649 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-02 01:55:14.592  INFO 133649 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-04-02 01:55:14.662  INFO 133649 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.saveAuthor(AuthorDto)), args=com.vladislav.spring.jpa.postgresql.dto.AuthorDto@3ecf7965
-2024-04-02 01:55:14.718  INFO 133649 --- [http-nio-8080-exec-1] c.v.s.j.p.controller.AuthorController    : Author saved successfully.
-2024-04-02 01:55:14.719  INFO 133649 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.saveAuthor(..))
-2024-04-02 01:55:14.719  INFO 133649 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.saveAuthor(..))
-2024-04-02 01:55:15.827  INFO 133649 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.saveAuthor(AuthorDto)), args=com.vladislav.spring.jpa.postgresql.dto.AuthorDto@70e1eb28
-2024-04-02 01:55:15.838  INFO 133649 --- [http-nio-8080-exec-2] c.v.s.j.p.controller.AuthorController    : Author saved successfully.
-2024-04-02 01:55:15.839  INFO 133649 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.saveAuthor(..))
-2024-04-02 01:55:15.839  INFO 133649 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.saveAuthor(..))
-2024-04-02 01:55:16.709  INFO 133649 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.saveAuthor(AuthorDto)), args=com.vladislav.spring.jpa.postgresql.dto.AuthorDto@2e0750e7
-2024-04-02 01:55:16.720  INFO 133649 --- [http-nio-8080-exec-3] c.v.s.j.p.controller.AuthorController    : Author saved successfully.
-2024-04-02 01:55:16.721  INFO 133649 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.saveAuthor(..))
-2024-04-02 01:55:16.721  INFO 133649 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.saveAuthor(..))
-2024-04-02 01:55:17.389  INFO 133649 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.saveAuthor(AuthorDto)), args=com.vladislav.spring.jpa.postgresql.dto.AuthorDto@342781a6
-2024-04-02 01:55:17.402  INFO 133649 --- [http-nio-8080-exec-4] c.v.s.j.p.controller.AuthorController    : Author saved successfully.
-2024-04-02 01:55:17.402  INFO 133649 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.saveAuthor(..))
-2024-04-02 01:55:17.402  INFO 133649 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.saveAuthor(..))
-2024-04-02 01:55:17.994  INFO 133649 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.saveAuthor(AuthorDto)), args=com.vladislav.spring.jpa.postgresql.dto.AuthorDto@21f3daa
-2024-04-02 01:55:18.006  INFO 133649 --- [http-nio-8080-exec-5] c.v.s.j.p.controller.AuthorController    : Author saved successfully.
-2024-04-02 01:55:18.006  INFO 133649 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.saveAuthor(..))
-2024-04-02 01:55:18.006  INFO 133649 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.saveAuthor(..))
-2024-04-02 01:56:06.897 ERROR 133649 --- [http-nio-8080-exec-6] c.v.s.j.p.exception.ExceptionManager     : Exception occurred: ErrorMessage(statusCode=500, timestamp=Tue Apr 02 01:56:06 MSK 2024, message=Required request body is missing: public org.springframework.http.ResponseEntity<com.vladislav.spring.jpa.postgresql.dto.AuthorDto> com.vladislav.spring.jpa.postgresql.controller.AuthorController.saveAuthor(com.vladislav.spring.jpa.postgresql.dto.AuthorDto), description=uri=/authors/save)
-2024-04-02 01:56:24.101  INFO 133649 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.saveAuthor(AuthorDto)), args=com.vladislav.spring.jpa.postgresql.dto.AuthorDto@6be05d58
-2024-04-02 01:56:24.114  INFO 133649 --- [http-nio-8080-exec-7] c.v.s.j.p.controller.AuthorController    : Author saved successfully.
-2024-04-02 01:56:24.114  INFO 133649 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.saveAuthor(..))
-2024-04-02 01:56:24.114  INFO 133649 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.saveAuthor(..))
-2024-04-02 01:57:49.079  INFO 133649 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
-2024-04-02 01:57:49.176  INFO 133649 --- [http-nio-8080-exec-9] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
-2024-04-02 01:57:49.177  INFO 133649 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
-2024-04-02 01:57:49.177  INFO 133649 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
-2024-04-02 01:57:49.912  INFO 133649 --- [http-nio-8080-exec-10] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
-2024-04-02 01:57:49.935  INFO 133649 --- [http-nio-8080-exec-10] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
-2024-04-02 01:57:49.936  INFO 133649 --- [http-nio-8080-exec-10] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
-2024-04-02 01:57:49.936  INFO 133649 --- [http-nio-8080-exec-10] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
-2024-04-02 01:57:51.873  INFO 133649 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.saveAuthor(AuthorDto)), args=com.vladislav.spring.jpa.postgresql.dto.AuthorDto@540e6837
-2024-04-02 01:57:51.884  INFO 133649 --- [http-nio-8080-exec-1] c.v.s.j.p.controller.AuthorController    : Author saved successfully.
-2024-04-02 01:57:51.885  INFO 133649 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.saveAuthor(..))
-2024-04-02 01:57:51.885  INFO 133649 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.saveAuthor(..))
-2024-04-02 01:57:55.758 ERROR 133649 --- [http-nio-8080-exec-2] c.v.s.j.p.exception.ExceptionManager     : Exception occurred: ErrorMessage(statusCode=500, timestamp=Tue Apr 02 01:57:55 MSK 2024, message=Required request body is missing: public org.springframework.http.ResponseEntity<com.vladislav.spring.jpa.postgresql.dto.AuthorDto> com.vladislav.spring.jpa.postgresql.controller.AuthorController.saveAuthor(com.vladislav.spring.jpa.postgresql.dto.AuthorDto), description=uri=/authors/save)
-2024-04-02 01:58:00.459  INFO 133649 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.saveAuthor(AuthorDto)), args=com.vladislav.spring.jpa.postgresql.dto.AuthorDto@d28e83b
-2024-04-02 01:58:00.471  INFO 133649 --- [http-nio-8080-exec-3] c.v.s.j.p.controller.AuthorController    : Author saved successfully.
-2024-04-02 01:58:00.472  INFO 133649 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.saveAuthor(..))
-2024-04-02 01:58:00.472  INFO 133649 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.saveAuthor(..))
-2024-04-02 01:58:30.438  INFO 133649 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
-2024-04-02 01:58:30.438  INFO 133649 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-04-02 01:58:30.440  INFO 133649 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-04-02 01:58:30.446  INFO 133649 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-04-02 01:58:30.933  INFO 135201 --- [main] c.v.s.j.p.BookManagerApplication         : Starting BookManagerApplication using Java 17.0.9 on laptop with PID 135201 (/home/vladik095/Рабочий стол/JAVA 1/target/classes started by vladik095 in /home/vladik095/Рабочий стол/JAVA 1)
-2024-04-02 01:58:30.935  INFO 135201 --- [main] c.v.s.j.p.BookManagerApplication         : No active profile set, falling back to default profiles: default
-2024-04-02 01:58:31.384  INFO 135201 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-04-02 01:58:31.426  INFO 135201 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 36 ms. Found 3 JPA repository interfaces.
-2024-04-02 01:58:31.967  INFO 135201 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2024-04-02 01:58:31.976  INFO 135201 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-02 01:58:31.976  INFO 135201 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
-2024-04-02 01:58:32.023  INFO 135201 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-02 01:58:32.023  INFO 135201 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1059 ms
-2024-04-02 01:58:32.182  INFO 135201 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-04-02 01:58:32.212  INFO 135201 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
-2024-04-02 01:58:32.303  INFO 135201 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2024-04-02 01:58:32.360  INFO 135201 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-04-02 01:58:32.577  INFO 135201 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-04-02 01:58:32.595  INFO 135201 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
-2024-04-02 01:58:32.983  INFO 135201 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-04-02 01:58:32.988  INFO 135201 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-04-02 01:58:33.001  INFO 135201 --- [main] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is initialized
-2024-04-02 01:58:33.745  WARN 135201 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-04-02 01:58:34.701  INFO 135201 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2024-04-02 01:58:34.709  INFO 135201 --- [main] c.v.s.j.p.BookManagerApplication         : Started BookManagerApplication in 4.012 seconds (JVM running for 4.212)
-2024-04-02 01:58:36.249  INFO 135201 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-02 01:58:36.249  INFO 135201 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-02 01:58:36.250  INFO 135201 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2024-04-02 01:58:36.324  INFO 135201 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.saveAuthor(AuthorDto,BindingResult)), args=com.vladislav.spring.jpa.postgresql.dto.AuthorDto@6273c272,org.springframework.validation.BeanPropertyBindingResult: 0 errors
-2024-04-02 01:58:36.377  INFO 135201 --- [http-nio-8080-exec-1] c.v.s.j.p.controller.AuthorController    : Author saved successfully.
-2024-04-02 01:58:36.379  INFO 135201 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.saveAuthor(..))
-2024-04-02 01:58:36.379  INFO 135201 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.saveAuthor(..))
-2024-04-02 01:58:37.216  INFO 135201 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.saveAuthor(AuthorDto,BindingResult)), args=com.vladislav.spring.jpa.postgresql.dto.AuthorDto@21f3daa,org.springframework.validation.BeanPropertyBindingResult: 0 errors
-2024-04-02 01:58:37.228  INFO 135201 --- [http-nio-8080-exec-2] c.v.s.j.p.controller.AuthorController    : Author saved successfully.
-2024-04-02 01:58:37.228  INFO 135201 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.saveAuthor(..))
-2024-04-02 01:58:37.228  INFO 135201 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.saveAuthor(..))
-2024-04-02 01:59:11.723 ERROR 135201 --- [http-nio-8080-exec-3] c.v.s.j.p.exception.ExceptionManager     : Exception occurred: ErrorMessage(statusCode=500, timestamp=Tue Apr 02 01:59:11 MSK 2024, message=Required request body is missing: public org.springframework.http.ResponseEntity<?> com.vladislav.spring.jpa.postgresql.controller.AuthorController.saveAuthor(com.vladislav.spring.jpa.postgresql.dto.AuthorDto,org.springframework.validation.BindingResult), description=uri=/authors/save)
-2024-04-02 01:59:24.770  INFO 135201 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
-2024-04-02 01:59:24.771  INFO 135201 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-04-02 01:59:24.772  INFO 135201 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-04-02 01:59:24.776  INFO 135201 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-04-02 01:59:27.840  INFO 135944 --- [main] c.v.s.j.p.BookManagerApplication         : Starting BookManagerApplication using Java 17.0.9 on laptop with PID 135944 (/home/vladik095/Рабочий стол/JAVA 1/target/classes started by vladik095 in /home/vladik095/Рабочий стол/JAVA 1)
-2024-04-02 01:59:27.842  INFO 135944 --- [main] c.v.s.j.p.BookManagerApplication         : No active profile set, falling back to default profiles: default
-2024-04-02 01:59:28.287  INFO 135944 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-04-02 01:59:28.328  INFO 135944 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35 ms. Found 3 JPA repository interfaces.
-2024-04-02 01:59:28.895  INFO 135944 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2024-04-02 01:59:28.904  INFO 135944 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-02 01:59:28.904  INFO 135944 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
-2024-04-02 01:59:28.954  INFO 135944 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-04-02 01:59:28.954  INFO 135944 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1081 ms
-2024-04-02 01:59:29.131  INFO 135944 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-04-02 01:59:29.162  INFO 135944 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
-2024-04-02 01:59:29.259  INFO 135944 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2024-04-02 01:59:29.322  INFO 135944 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-04-02 01:59:29.550  INFO 135944 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-04-02 01:59:29.569  INFO 135944 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
-2024-04-02 01:59:30.038  INFO 135944 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-04-02 01:59:30.044  INFO 135944 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-04-02 01:59:30.057  INFO 135944 --- [main] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is initialized
-2024-04-02 01:59:30.799  WARN 135944 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-04-02 01:59:31.629  INFO 135944 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2024-04-02 01:59:31.639  INFO 135944 --- [main] c.v.s.j.p.BookManagerApplication         : Started BookManagerApplication in 4.044 seconds (JVM running for 4.253)
-2024-04-02 01:59:31.749  INFO 135944 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-02 01:59:31.749  INFO 135944 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-04-02 01:59:31.752  INFO 135944 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
-2024-04-02 01:59:31.779 ERROR 135944 --- [http-nio-8080-exec-1] c.v.s.j.p.exception.ExceptionManager     : Exception occurred: ErrorMessage(statusCode=500, timestamp=Tue Apr 02 01:59:31 MSK 2024, message=Required request body is missing: public org.springframework.http.ResponseEntity<com.vladislav.spring.jpa.postgresql.dto.AuthorDto> com.vladislav.spring.jpa.postgresql.controller.AuthorController.saveAuthor(com.vladislav.spring.jpa.postgresql.dto.AuthorDto), description=uri=/authors/save)
-2024-04-02 02:03:07.971  INFO 135944 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
-2024-04-02 02:03:07.971  INFO 135944 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-04-02 02:03:07.973  INFO 135944 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-04-02 02:03:07.980  INFO 135944 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-04-15 20:31:40.700  INFO 10606 --- [main] c.v.s.j.p.BookManagerApplication         : Starting BookManagerApplication using Java 17.0.9 on laptop with PID 10606 (/home/vladik095/Рабочий стол/JAVA 1/target/classes started by vladik095 in /home/vladik095/Рабочий стол/JAVA 1)
+2024-04-15 20:31:40.708  INFO 10606 --- [main] c.v.s.j.p.BookManagerApplication         : No active profile set, falling back to default profiles: default
+2024-04-15 20:31:41.627  INFO 10606 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-15 20:31:41.702  INFO 10606 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 63 ms. Found 3 JPA repository interfaces.
+2024-04-15 20:31:42.687  INFO 10606 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-04-15 20:31:42.698  INFO 10606 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-15 20:31:42.699  INFO 10606 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-04-15 20:31:42.786  INFO 10606 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-15 20:31:42.786  INFO 10606 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1992 ms
+2024-04-15 20:31:43.100  INFO 10606 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-15 20:31:43.160  INFO 10606 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
+2024-04-15 20:31:43.341  INFO 10606 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-04-15 20:31:43.462  INFO 10606 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-15 20:31:43.904  INFO 10606 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-15 20:31:43.941  INFO 10606 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-04-15 20:31:44.722  INFO 10606 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-15 20:31:44.732  INFO 10606 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 20:31:44.755  INFO 10606 --- [main] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is initialized
+2024-04-15 20:31:46.071  WARN 10606 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-15 20:31:47.110  INFO 10606 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-04-15 20:31:47.119  INFO 10606 --- [main] c.v.s.j.p.BookManagerApplication         : Started BookManagerApplication in 6.992 seconds (JVM running for 7.524)
+2024-04-15 20:31:54.481  INFO 10606 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-15 20:31:54.481  INFO 10606 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-15 20:31:54.484  INFO 10606 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-04-15 20:31:54.524  INFO 10606 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 20:31:54.812  INFO 10606 --- [http-nio-8080-exec-1] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 20:31:54.812  INFO 10606 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 20:31:54.813  INFO 10606 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 20:32:48.057 ERROR 10606 --- [http-nio-8080-exec-2] c.v.s.j.p.exception.ExceptionManager     : Exception occurred: ErrorMessage(statusCode=500, timestamp=Mon Apr 15 20:32:48 MSK 2024, message=Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "bulk", description=uri=/api/books/bulk)
+2024-04-15 20:34:35.481  INFO 10606 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.BookController.getAllBooks()), args=
+2024-04-15 20:34:35.534  INFO 10606 --- [http-nio-8080-exec-6] c.v.s.j.p.controller.BookController      : All books fetched successfully.
+2024-04-15 20:34:35.535  INFO 10606 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(BookController.getAllBooks())
+2024-04-15 20:34:35.536  INFO 10606 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(BookController.getAllBooks())
+2024-04-15 20:36:32.822  INFO 10606 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
+2024-04-15 20:36:32.822  INFO 10606 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 20:36:32.825  INFO 10606 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-04-15 20:36:32.838  INFO 10606 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-04-15 20:36:59.716  INFO 12874 --- [main] c.v.s.j.p.BookManagerApplication         : Starting BookManagerApplication using Java 17.0.9 on laptop with PID 12874 (/home/vladik095/Рабочий стол/JAVA 1/target/classes started by vladik095 in /home/vladik095/Рабочий стол/JAVA 1)
+2024-04-15 20:36:59.719  INFO 12874 --- [main] c.v.s.j.p.BookManagerApplication         : No active profile set, falling back to default profiles: default
+2024-04-15 20:37:00.535  INFO 12874 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-15 20:37:00.622  INFO 12874 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 76 ms. Found 3 JPA repository interfaces.
+2024-04-15 20:37:01.649  INFO 12874 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-04-15 20:37:01.662  INFO 12874 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-15 20:37:01.662  INFO 12874 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-04-15 20:37:01.747  INFO 12874 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-15 20:37:01.747  INFO 12874 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1966 ms
+2024-04-15 20:37:02.034  INFO 12874 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-15 20:37:02.096  INFO 12874 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
+2024-04-15 20:37:02.275  INFO 12874 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-04-15 20:37:02.390  INFO 12874 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-15 20:37:02.812  INFO 12874 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-15 20:37:02.848  INFO 12874 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-04-15 20:37:03.695  INFO 12874 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-15 20:37:03.705  INFO 12874 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 20:37:03.727  INFO 12874 --- [main] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is initialized
+2024-04-15 20:37:05.076  WARN 12874 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-15 20:37:06.195  INFO 12874 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-04-15 20:37:06.202  INFO 12874 --- [main] c.v.s.j.p.BookManagerApplication         : Started BookManagerApplication in 7.054 seconds (JVM running for 7.606)
+2024-04-15 20:37:08.210  INFO 12874 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-15 20:37:08.210  INFO 12874 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-15 20:37:08.212  INFO 12874 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-04-15 20:37:08.379  INFO 12874 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.saveAuthor(AuthorDto)), args=com.vladislav.spring.jpa.postgresql.dto.AuthorDto@45f80890
+2024-04-15 20:37:08.499  INFO 12874 --- [http-nio-8080-exec-1] c.v.s.j.p.controller.AuthorController    : Author saved successfully.
+2024-04-15 20:37:08.502  INFO 12874 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.saveAuthor(..))
+2024-04-15 20:37:08.502  INFO 12874 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.saveAuthor(..))
+2024-04-15 20:37:31.608  INFO 12874 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 20:37:31.866  INFO 12874 --- [http-nio-8080-exec-2] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 20:37:31.867  INFO 12874 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 20:37:31.867  INFO 12874 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 20:39:27.565  INFO 12874 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
+2024-04-15 20:39:27.566  INFO 12874 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 20:39:27.569  INFO 12874 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-04-15 20:39:27.581  INFO 12874 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-04-15 20:39:28.705  INFO 14016 --- [main] c.v.s.j.p.BookManagerApplication         : Starting BookManagerApplication using Java 17.0.9 on laptop with PID 14016 (/home/vladik095/Рабочий стол/JAVA 1/target/classes started by vladik095 in /home/vladik095/Рабочий стол/JAVA 1)
+2024-04-15 20:39:28.708  INFO 14016 --- [main] c.v.s.j.p.BookManagerApplication         : No active profile set, falling back to default profiles: default
+2024-04-15 20:39:29.690  INFO 14016 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-15 20:39:29.769  INFO 14016 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 66 ms. Found 3 JPA repository interfaces.
+2024-04-15 20:39:30.781  INFO 14016 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-04-15 20:39:30.795  INFO 14016 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-15 20:39:30.795  INFO 14016 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-04-15 20:39:30.881  INFO 14016 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-15 20:39:30.882  INFO 14016 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2090 ms
+2024-04-15 20:39:31.162  INFO 14016 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-15 20:39:31.225  INFO 14016 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
+2024-04-15 20:39:31.409  INFO 14016 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-04-15 20:39:31.527  INFO 14016 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-15 20:39:31.993  INFO 14016 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-15 20:39:32.034  INFO 14016 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-04-15 20:39:32.841  INFO 14016 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-15 20:39:32.852  INFO 14016 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 20:39:32.877  INFO 14016 --- [main] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is initialized
+2024-04-15 20:39:34.172  WARN 14016 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-15 20:39:35.238  INFO 14016 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-04-15 20:39:35.249  INFO 14016 --- [main] c.v.s.j.p.BookManagerApplication         : Started BookManagerApplication in 7.117 seconds (JVM running for 7.588)
+2024-04-15 20:39:36.182  INFO 14016 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-15 20:39:36.183  INFO 14016 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-15 20:39:36.184  INFO 14016 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-15 20:39:36.306  INFO 14016 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@199c20e4, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@65e580df, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@6045241f]
+2024-04-15 20:39:36.321  INFO 14016 --- [http-nio-8080-exec-1] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 20:39:36.502  INFO 14016 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 20:39:36.502  INFO 14016 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 20:40:27.357  INFO 14016 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@2ad44ad8, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@2413b1f2, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@202c21a8]
+2024-04-15 20:40:27.357  INFO 14016 --- [http-nio-8080-exec-2] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 20:40:27.402  INFO 14016 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 20:40:27.403  INFO 14016 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 20:40:31.825  INFO 14016 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 20:40:32.015  INFO 14016 --- [http-nio-8080-exec-3] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 20:40:32.015  INFO 14016 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 20:40:32.015  INFO 14016 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 20:41:42.985  INFO 14016 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 20:41:42.995  WARN 14016 --- [http-nio-8080-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 42P01
+2024-04-15 20:41:42.996 ERROR 14016 --- [http-nio-8080-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: relation "author" does not exist
+  Позиция: 62
+2024-04-15 20:41:43.006 ERROR 14016 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : After throwing execution(AuthorController.getAllAuthors()), exception: could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2024-04-15 20:41:43.006  INFO 14016 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 20:41:43.009 ERROR 14016 --- [http-nio-8080-exec-5] c.v.s.j.p.exception.ExceptionManager     : Exception occurred: ErrorMessage(statusCode=500, timestamp=Mon Apr 15 20:41:43 MSK 2024, message=could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet, description=uri=/authors/getAll)
+2024-04-15 20:41:44.867  INFO 14016 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 20:41:44.871  WARN 14016 --- [http-nio-8080-exec-6] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 42P01
+2024-04-15 20:41:44.871 ERROR 14016 --- [http-nio-8080-exec-6] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: relation "author" does not exist
+  Позиция: 62
+2024-04-15 20:41:44.872 ERROR 14016 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : After throwing execution(AuthorController.getAllAuthors()), exception: could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2024-04-15 20:41:44.873  INFO 14016 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 20:41:44.873 ERROR 14016 --- [http-nio-8080-exec-6] c.v.s.j.p.exception.ExceptionManager     : Exception occurred: ErrorMessage(statusCode=500, timestamp=Mon Apr 15 20:41:44 MSK 2024, message=could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet, description=uri=/authors/getAll)
+2024-04-15 20:41:46.210  INFO 14016 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 20:41:46.213  WARN 14016 --- [http-nio-8080-exec-7] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 42P01
+2024-04-15 20:41:46.213 ERROR 14016 --- [http-nio-8080-exec-7] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: relation "author" does not exist
+  Позиция: 62
+2024-04-15 20:41:46.214 ERROR 14016 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : After throwing execution(AuthorController.getAllAuthors()), exception: could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2024-04-15 20:41:46.215  INFO 14016 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 20:41:46.215 ERROR 14016 --- [http-nio-8080-exec-7] c.v.s.j.p.exception.ExceptionManager     : Exception occurred: ErrorMessage(statusCode=500, timestamp=Mon Apr 15 20:41:46 MSK 2024, message=could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet, description=uri=/authors/getAll)
+2024-04-15 20:41:47.559  INFO 14016 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 20:41:47.562  WARN 14016 --- [http-nio-8080-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 42P01
+2024-04-15 20:41:47.562 ERROR 14016 --- [http-nio-8080-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: relation "author" does not exist
+  Позиция: 62
+2024-04-15 20:41:47.563 ERROR 14016 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : After throwing execution(AuthorController.getAllAuthors()), exception: could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2024-04-15 20:41:47.564  INFO 14016 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 20:41:47.565 ERROR 14016 --- [http-nio-8080-exec-8] c.v.s.j.p.exception.ExceptionManager     : Exception occurred: ErrorMessage(statusCode=500, timestamp=Mon Apr 15 20:41:47 MSK 2024, message=could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet, description=uri=/authors/getAll)
+2024-04-15 20:41:48.826  INFO 14016 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 20:41:48.829  WARN 14016 --- [http-nio-8080-exec-9] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 42P01
+2024-04-15 20:41:48.829 ERROR 14016 --- [http-nio-8080-exec-9] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: relation "author" does not exist
+  Позиция: 62
+2024-04-15 20:41:48.830 ERROR 14016 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : After throwing execution(AuthorController.getAllAuthors()), exception: could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2024-04-15 20:41:48.830  INFO 14016 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 20:41:48.831 ERROR 14016 --- [http-nio-8080-exec-9] c.v.s.j.p.exception.ExceptionManager     : Exception occurred: ErrorMessage(statusCode=500, timestamp=Mon Apr 15 20:41:48 MSK 2024, message=could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet, description=uri=/authors/getAll)
+2024-04-15 20:41:50.110  INFO 14016 --- [http-nio-8080-exec-10] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 20:41:50.113  WARN 14016 --- [http-nio-8080-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 42P01
+2024-04-15 20:41:50.113 ERROR 14016 --- [http-nio-8080-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: relation "author" does not exist
+  Позиция: 62
+2024-04-15 20:41:50.114 ERROR 14016 --- [http-nio-8080-exec-10] c.v.s.jpa.postgresql.aspect.BookAspect   : After throwing execution(AuthorController.getAllAuthors()), exception: could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2024-04-15 20:41:50.115  INFO 14016 --- [http-nio-8080-exec-10] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 20:41:50.115 ERROR 14016 --- [http-nio-8080-exec-10] c.v.s.j.p.exception.ExceptionManager     : Exception occurred: ErrorMessage(statusCode=500, timestamp=Mon Apr 15 20:41:50 MSK 2024, message=could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet, description=uri=/authors/getAll)
+2024-04-15 20:41:51.412  INFO 14016 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 20:41:51.418  WARN 14016 --- [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 42P01
+2024-04-15 20:41:51.419 ERROR 14016 --- [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: relation "author" does not exist
+  Позиция: 62
+2024-04-15 20:41:51.420 ERROR 14016 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After throwing execution(AuthorController.getAllAuthors()), exception: could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2024-04-15 20:41:51.420  INFO 14016 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 20:41:51.421 ERROR 14016 --- [http-nio-8080-exec-1] c.v.s.j.p.exception.ExceptionManager     : Exception occurred: ErrorMessage(statusCode=500, timestamp=Mon Apr 15 20:41:51 MSK 2024, message=could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet, description=uri=/authors/getAll)
+2024-04-15 20:42:12.639  INFO 14016 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
+2024-04-15 20:42:12.640  INFO 14016 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 20:42:12.643  INFO 14016 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-04-15 20:42:12.655  INFO 14016 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-04-15 20:42:13.758  INFO 15646 --- [main] c.v.s.j.p.BookManagerApplication         : Starting BookManagerApplication using Java 17.0.9 on laptop with PID 15646 (/home/vladik095/Рабочий стол/JAVA 1/target/classes started by vladik095 in /home/vladik095/Рабочий стол/JAVA 1)
+2024-04-15 20:42:13.761  INFO 15646 --- [main] c.v.s.j.p.BookManagerApplication         : No active profile set, falling back to default profiles: default
+2024-04-15 20:42:14.585  INFO 15646 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-15 20:42:14.662  INFO 15646 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 66 ms. Found 3 JPA repository interfaces.
+2024-04-15 20:42:15.621  INFO 15646 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-04-15 20:42:15.635  INFO 15646 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-15 20:42:15.636  INFO 15646 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-04-15 20:42:15.726  INFO 15646 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-15 20:42:15.727  INFO 15646 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1905 ms
+2024-04-15 20:42:16.025  INFO 15646 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-15 20:42:16.085  INFO 15646 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
+2024-04-15 20:42:16.276  INFO 15646 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-04-15 20:42:16.391  INFO 15646 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-15 20:42:16.873  INFO 15646 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-15 20:42:16.913  INFO 15646 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-04-15 20:42:17.643  WARN 15646 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-04-15 20:42:17.644  WARN 15646 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "fkklnrv3weler2ftkweewlky958" of relation "book" does not exist, skipping
+2024-04-15 20:42:17.651  WARN 15646 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-04-15 20:42:17.652  WARN 15646 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "author" does not exist, skipping
+2024-04-15 20:42:17.723  INFO 15646 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-15 20:42:17.731  INFO 15646 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 20:42:17.755  INFO 15646 --- [main] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is initialized
+2024-04-15 20:42:19.017  WARN 15646 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-15 20:42:20.531  INFO 15646 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-04-15 20:42:20.541  INFO 15646 --- [main] c.v.s.j.p.BookManagerApplication         : Started BookManagerApplication in 7.298 seconds (JVM running for 7.797)
+2024-04-15 20:42:27.631  INFO 15646 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-15 20:42:27.631  INFO 15646 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-15 20:42:27.633  INFO 15646 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-04-15 20:42:27.673  INFO 15646 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 20:42:27.868  INFO 15646 --- [http-nio-8080-exec-1] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 20:42:27.869  INFO 15646 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 20:42:27.870  INFO 15646 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 20:42:43.357  INFO 15646 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@19175adc, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@6dd5d6de, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@1d419214]
+2024-04-15 20:42:43.357  INFO 15646 --- [http-nio-8080-exec-2] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 20:42:43.482  INFO 15646 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 20:42:43.483  INFO 15646 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 20:42:46.289  INFO 15646 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 20:42:46.307  INFO 15646 --- [http-nio-8080-exec-3] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 20:42:46.308  INFO 15646 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 20:42:46.308  INFO 15646 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 20:45:59.982  INFO 15646 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@6838f54f, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@2d3a762c, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@4bed24d2]
+2024-04-15 20:45:59.982  INFO 15646 --- [http-nio-8080-exec-5] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 20:46:00.022  INFO 15646 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 20:46:00.022  INFO 15646 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 20:46:02.108  INFO 15646 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 20:46:02.121  INFO 15646 --- [http-nio-8080-exec-6] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 20:46:02.122  INFO 15646 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 20:46:02.122  INFO 15646 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 20:46:19.261  INFO 15646 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@6357b9bd, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@6d904ba7, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@69afd2cd]
+2024-04-15 20:46:19.261  INFO 15646 --- [http-nio-8080-exec-7] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 20:46:19.278  INFO 15646 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 20:46:19.278  INFO 15646 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 20:46:22.698  INFO 15646 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 20:46:22.708  INFO 15646 --- [http-nio-8080-exec-8] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 20:46:22.708  INFO 15646 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 20:46:22.709  INFO 15646 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 20:46:29.415  INFO 15646 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@19dbdcea, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@5a00c9ba, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@34ede90a]
+2024-04-15 20:46:29.416  INFO 15646 --- [http-nio-8080-exec-9] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 20:46:29.448  INFO 15646 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 20:46:29.448  INFO 15646 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 20:46:32.841  INFO 15646 --- [http-nio-8080-exec-10] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 20:46:32.853  INFO 15646 --- [http-nio-8080-exec-10] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 20:46:32.854  INFO 15646 --- [http-nio-8080-exec-10] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 20:46:32.854  INFO 15646 --- [http-nio-8080-exec-10] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 20:46:50.300  INFO 15646 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 20:46:50.310  INFO 15646 --- [http-nio-8080-exec-1] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 20:46:50.311  INFO 15646 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 20:46:50.311  INFO 15646 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 20:54:20.447  INFO 15646 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
+2024-04-15 20:54:20.448  INFO 15646 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 20:54:20.450  INFO 15646 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-04-15 20:54:20.460  INFO 15646 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-04-15 20:54:21.529  INFO 20488 --- [main] c.v.s.j.p.BookManagerApplication         : Starting BookManagerApplication using Java 17.0.9 on laptop with PID 20488 (/home/vladik095/Рабочий стол/JAVA 1/target/classes started by vladik095 in /home/vladik095/Рабочий стол/JAVA 1)
+2024-04-15 20:54:21.532  INFO 20488 --- [main] c.v.s.j.p.BookManagerApplication         : No active profile set, falling back to default profiles: default
+2024-04-15 20:54:22.388  INFO 20488 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-15 20:54:22.464  INFO 20488 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 65 ms. Found 3 JPA repository interfaces.
+2024-04-15 20:54:23.488  INFO 20488 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-04-15 20:54:23.502  INFO 20488 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-15 20:54:23.503  INFO 20488 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-04-15 20:54:23.589  INFO 20488 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-15 20:54:23.589  INFO 20488 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1995 ms
+2024-04-15 20:54:23.856  INFO 20488 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-15 20:54:23.914  INFO 20488 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
+2024-04-15 20:54:24.087  INFO 20488 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-04-15 20:54:24.200  INFO 20488 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-15 20:54:24.626  INFO 20488 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-15 20:54:24.661  INFO 20488 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-04-15 20:54:25.377  INFO 20488 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-15 20:54:25.386  INFO 20488 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 20:54:25.415  INFO 20488 --- [main] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is initialized
+2024-04-15 20:54:26.673  WARN 20488 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-15 20:54:28.000  INFO 20488 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-04-15 20:54:28.010  INFO 20488 --- [main] c.v.s.j.p.BookManagerApplication         : Started BookManagerApplication in 7.007 seconds (JVM running for 7.463)
+2024-04-15 20:54:55.562  INFO 20488 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-15 20:54:55.563  INFO 20488 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-15 20:54:55.566  INFO 20488 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-04-15 20:54:55.609  INFO 20488 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 20:54:55.808  INFO 20488 --- [http-nio-8080-exec-1] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 20:54:55.809  INFO 20488 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 20:54:55.809  INFO 20488 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 20:54:59.079  INFO 20488 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 20:54:59.083  INFO 20488 --- [http-nio-8080-exec-2] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 20:54:59.083  INFO 20488 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 20:54:59.084  INFO 20488 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 20:55:00.326  INFO 20488 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 20:55:00.331  INFO 20488 --- [http-nio-8080-exec-3] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 20:55:00.331  INFO 20488 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 20:55:00.331  INFO 20488 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 20:55:13.332  INFO 20488 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@e377bd7, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@b3f9e9f]
+2024-04-15 20:55:13.333  INFO 20488 --- [http-nio-8080-exec-4] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 20:55:13.452  INFO 20488 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 20:55:13.453  INFO 20488 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 20:55:17.434  INFO 20488 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 20:55:17.451  INFO 20488 --- [http-nio-8080-exec-5] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 20:55:17.452  INFO 20488 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 20:55:17.452  INFO 20488 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:00:02.277  INFO 20488 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:00:02.285  INFO 20488 --- [http-nio-8080-exec-7] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:00:02.285  INFO 20488 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:00:02.285  INFO 20488 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:00:03.818  INFO 20488 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:00:03.825  INFO 20488 --- [http-nio-8080-exec-8] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:00:03.825  INFO 20488 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:00:03.825  INFO 20488 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:00:04.671  INFO 20488 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:00:04.677  INFO 20488 --- [http-nio-8080-exec-9] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:00:04.677  INFO 20488 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:00:04.677  INFO 20488 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:00:05.437  INFO 20488 --- [http-nio-8080-exec-10] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:00:05.443  INFO 20488 --- [http-nio-8080-exec-10] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:00:05.444  INFO 20488 --- [http-nio-8080-exec-10] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:00:05.444  INFO 20488 --- [http-nio-8080-exec-10] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:00:08.418  INFO 20488 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@485e6eee, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@548a2e0c]
+2024-04-15 21:00:08.419  INFO 20488 --- [http-nio-8080-exec-1] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 21:00:08.450  INFO 20488 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:00:08.451  INFO 20488 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:00:11.127  INFO 20488 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:00:11.135  INFO 20488 --- [http-nio-8080-exec-2] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:00:11.135  INFO 20488 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:00:11.136  INFO 20488 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:00:16.946  INFO 20488 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:00:16.953  INFO 20488 --- [http-nio-8080-exec-3] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:00:16.954  INFO 20488 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:00:16.954  INFO 20488 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:00:24.610  INFO 20488 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@3e77c194, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@650b5e24]
+2024-04-15 21:00:24.610  INFO 20488 --- [http-nio-8080-exec-4] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 21:00:24.651  INFO 20488 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:00:24.652  INFO 20488 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:00:27.212  INFO 20488 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:00:27.221  INFO 20488 --- [http-nio-8080-exec-5] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:00:27.221  INFO 20488 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:00:27.221  INFO 20488 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:05:32.116  INFO 20488 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:05:32.122  INFO 20488 --- [http-nio-8080-exec-7] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:05:32.122  INFO 20488 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:05:32.123  INFO 20488 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:05:38.531  INFO 20488 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@9864c15, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@74604b62]
+2024-04-15 21:05:38.532  INFO 20488 --- [http-nio-8080-exec-8] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 21:05:38.551  INFO 20488 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:05:38.551  INFO 20488 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:05:44.543  INFO 20488 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:05:44.551  INFO 20488 --- [http-nio-8080-exec-9] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:05:44.551  INFO 20488 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:05:44.551  INFO 20488 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:05:45.682  INFO 20488 --- [http-nio-8080-exec-10] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:05:45.687  INFO 20488 --- [http-nio-8080-exec-10] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:05:45.688  INFO 20488 --- [http-nio-8080-exec-10] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:05:45.688  INFO 20488 --- [http-nio-8080-exec-10] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:05:55.764  INFO 20488 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
+2024-04-15 21:05:55.764  INFO 20488 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 21:05:55.766  INFO 20488 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-04-15 21:05:55.777  INFO 20488 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-04-15 21:05:56.931  INFO 24910 --- [main] c.v.s.j.p.BookManagerApplication         : Starting BookManagerApplication using Java 17.0.9 on laptop with PID 24910 (/home/vladik095/Рабочий стол/JAVA 1/target/classes started by vladik095 in /home/vladik095/Рабочий стол/JAVA 1)
+2024-04-15 21:05:56.935  INFO 24910 --- [main] c.v.s.j.p.BookManagerApplication         : No active profile set, falling back to default profiles: default
+2024-04-15 21:05:57.855  INFO 24910 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-15 21:05:57.929  INFO 24910 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 62 ms. Found 3 JPA repository interfaces.
+2024-04-15 21:05:58.923  INFO 24910 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-04-15 21:05:58.936  INFO 24910 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-15 21:05:58.937  INFO 24910 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-04-15 21:05:59.023  INFO 24910 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-15 21:05:59.024  INFO 24910 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1964 ms
+2024-04-15 21:05:59.335  INFO 24910 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-15 21:05:59.397  INFO 24910 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
+2024-04-15 21:05:59.569  INFO 24910 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-04-15 21:05:59.676  INFO 24910 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-15 21:06:00.078  INFO 24910 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-15 21:06:00.117  INFO 24910 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-04-15 21:06:00.866  INFO 24910 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-15 21:06:00.875  INFO 24910 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 21:06:00.898  INFO 24910 --- [main] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is initialized
+2024-04-15 21:06:02.209  WARN 24910 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-15 21:06:03.687  INFO 24910 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-04-15 21:06:03.700  INFO 24910 --- [main] c.v.s.j.p.BookManagerApplication         : Started BookManagerApplication in 7.363 seconds (JVM running for 7.833)
+2024-04-15 21:06:04.040  INFO 24910 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-15 21:06:04.041  INFO 24910 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-15 21:06:04.043  INFO 24910 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-04-15 21:06:04.072  INFO 24910 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:06:04.201  INFO 24910 --- [http-nio-8080-exec-1] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:06:04.202  INFO 24910 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:06:04.202  INFO 24910 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:06:07.916  INFO 24910 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@49c51417, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@7fdf63dd]
+2024-04-15 21:06:07.916  INFO 24910 --- [http-nio-8080-exec-2] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 21:06:08.026 ERROR 24910 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After throwing execution(AuthorController.createOrUpdateAuthorsBulk(..)), exception: Multiple representations of the same entity [com.vladislav.spring.jpa.postgresql.model.Book#1] are being merged. Detached: [Book(id=1, title=Book 1)]; Detached: [Book(id=2, title=Book 2)]; nested exception is java.lang.IllegalStateException: Multiple representations of the same entity [com.vladislav.spring.jpa.postgresql.model.Book#1] are being merged. Detached: [Book(id=1, title=Book 1)]; Detached: [Book(id=2, title=Book 2)]
+2024-04-15 21:06:08.026  INFO 24910 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:06:08.030 ERROR 24910 --- [http-nio-8080-exec-2] c.v.s.j.p.exception.ExceptionManager     : Exception occurred: ErrorMessage(statusCode=500, timestamp=Mon Apr 15 21:06:08 MSK 2024, message=Multiple representations of the same entity [com.vladislav.spring.jpa.postgresql.model.Book#1] are being merged. Detached: [Book(id=1, title=Book 1)]; Detached: [Book(id=2, title=Book 2)]; nested exception is java.lang.IllegalStateException: Multiple representations of the same entity [com.vladislav.spring.jpa.postgresql.model.Book#1] are being merged. Detached: [Book(id=1, title=Book 1)]; Detached: [Book(id=2, title=Book 2)], description=uri=/authors/bulk)
+2024-04-15 21:06:11.576  INFO 24910 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:06:11.582  INFO 24910 --- [http-nio-8080-exec-3] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:06:11.582  INFO 24910 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:06:11.583  INFO 24910 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:06:25.816  INFO 24910 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:06:25.820  INFO 24910 --- [http-nio-8080-exec-4] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:06:25.821  INFO 24910 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:06:25.821  INFO 24910 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:06:27.343  INFO 24910 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:06:27.348  INFO 24910 --- [http-nio-8080-exec-5] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:06:27.349  INFO 24910 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:06:27.349  INFO 24910 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:06:29.843  INFO 24910 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@35038fd2, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@4ed82f0]
+2024-04-15 21:06:29.843  INFO 24910 --- [http-nio-8080-exec-6] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 21:06:29.898  INFO 24910 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:06:29.899  INFO 24910 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:06:32.429  INFO 24910 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:06:32.443  INFO 24910 --- [http-nio-8080-exec-7] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:06:32.443  INFO 24910 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:06:32.444  INFO 24910 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:06:37.572  INFO 24910 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:06:37.578  INFO 24910 --- [http-nio-8080-exec-8] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:06:37.579  INFO 24910 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:06:37.579  INFO 24910 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:08:02.852  INFO 24910 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
+2024-04-15 21:08:02.853  INFO 24910 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 21:08:02.855  INFO 24910 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-04-15 21:08:02.867  INFO 24910 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-04-15 21:08:04.074  INFO 26076 --- [main] c.v.s.j.p.BookManagerApplication         : Starting BookManagerApplication using Java 17.0.9 on laptop with PID 26076 (/home/vladik095/Рабочий стол/JAVA 1/target/classes started by vladik095 in /home/vladik095/Рабочий стол/JAVA 1)
+2024-04-15 21:08:04.077  INFO 26076 --- [main] c.v.s.j.p.BookManagerApplication         : No active profile set, falling back to default profiles: default
+2024-04-15 21:08:04.989  INFO 26076 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-15 21:08:05.063  INFO 26076 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 63 ms. Found 3 JPA repository interfaces.
+2024-04-15 21:08:06.030  INFO 26076 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-04-15 21:08:06.044  INFO 26076 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-15 21:08:06.044  INFO 26076 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-04-15 21:08:06.135  INFO 26076 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-15 21:08:06.136  INFO 26076 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1965 ms
+2024-04-15 21:08:06.430  INFO 26076 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-15 21:08:06.484  INFO 26076 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
+2024-04-15 21:08:06.657  INFO 26076 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-04-15 21:08:06.778  INFO 26076 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-15 21:08:07.251  INFO 26076 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-15 21:08:07.290  INFO 26076 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-04-15 21:08:08.067  INFO 26076 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-15 21:08:08.076  INFO 26076 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 21:08:08.096  INFO 26076 --- [main] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is initialized
+2024-04-15 21:08:09.352  WARN 26076 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-15 21:08:10.736  INFO 26076 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-04-15 21:08:10.749  INFO 26076 --- [main] c.v.s.j.p.BookManagerApplication         : Started BookManagerApplication in 7.292 seconds (JVM running for 7.789)
+2024-04-15 21:08:15.274  INFO 26076 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-15 21:08:15.274  INFO 26076 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-15 21:08:15.277  INFO 26076 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-04-15 21:08:15.437  INFO 26076 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@23ffc9ce, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@25d81277]
+2024-04-15 21:08:15.455  INFO 26076 --- [http-nio-8080-exec-1] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 21:08:15.593 ERROR 26076 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After throwing execution(AuthorController.createOrUpdateAuthorsBulk(..)), exception: Multiple representations of the same entity [com.vladislav.spring.jpa.postgresql.model.Book#1] are being merged. Detached: [Book(id=1, title=Book 1)]; Detached: [Book(id=2, title=Book 2)]; nested exception is java.lang.IllegalStateException: Multiple representations of the same entity [com.vladislav.spring.jpa.postgresql.model.Book#1] are being merged. Detached: [Book(id=1, title=Book 1)]; Detached: [Book(id=2, title=Book 2)]
+2024-04-15 21:08:15.593  INFO 26076 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:08:15.596 ERROR 26076 --- [http-nio-8080-exec-1] c.v.s.j.p.exception.ExceptionManager     : Exception occurred: ErrorMessage(statusCode=500, timestamp=Mon Apr 15 21:08:15 MSK 2024, message=Multiple representations of the same entity [com.vladislav.spring.jpa.postgresql.model.Book#1] are being merged. Detached: [Book(id=1, title=Book 1)]; Detached: [Book(id=2, title=Book 2)]; nested exception is java.lang.IllegalStateException: Multiple representations of the same entity [com.vladislav.spring.jpa.postgresql.model.Book#1] are being merged. Detached: [Book(id=1, title=Book 1)]; Detached: [Book(id=2, title=Book 2)], description=uri=/authors/bulk)
+2024-04-15 21:08:18.653  INFO 26076 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:08:18.787  INFO 26076 --- [http-nio-8080-exec-2] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:08:18.787  INFO 26076 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:08:18.787  INFO 26076 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:08:21.879  INFO 26076 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@76154eb0, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@23dd2de2]
+2024-04-15 21:08:21.880  INFO 26076 --- [http-nio-8080-exec-3] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 21:08:21.894 ERROR 26076 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After throwing execution(AuthorController.createOrUpdateAuthorsBulk(..)), exception: Multiple representations of the same entity [com.vladislav.spring.jpa.postgresql.model.Book#2] are being merged. Detached: [Book(id=2, title=Book 2)]; Detached: [Book(id=1, title=Book 1)]; nested exception is java.lang.IllegalStateException: Multiple representations of the same entity [com.vladislav.spring.jpa.postgresql.model.Book#2] are being merged. Detached: [Book(id=2, title=Book 2)]; Detached: [Book(id=1, title=Book 1)]
+2024-04-15 21:08:21.894  INFO 26076 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:08:21.895 ERROR 26076 --- [http-nio-8080-exec-3] c.v.s.j.p.exception.ExceptionManager     : Exception occurred: ErrorMessage(statusCode=500, timestamp=Mon Apr 15 21:08:21 MSK 2024, message=Multiple representations of the same entity [com.vladislav.spring.jpa.postgresql.model.Book#2] are being merged. Detached: [Book(id=2, title=Book 2)]; Detached: [Book(id=1, title=Book 1)]; nested exception is java.lang.IllegalStateException: Multiple representations of the same entity [com.vladislav.spring.jpa.postgresql.model.Book#2] are being merged. Detached: [Book(id=2, title=Book 2)]; Detached: [Book(id=1, title=Book 1)], description=uri=/authors/bulk)
+2024-04-15 21:08:23.345  INFO 26076 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@49eff206, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@9f94c70]
+2024-04-15 21:08:23.345  INFO 26076 --- [http-nio-8080-exec-4] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 21:08:23.410  INFO 26076 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:08:23.411  INFO 26076 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:08:26.433  INFO 26076 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:08:26.449  INFO 26076 --- [http-nio-8080-exec-5] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:08:26.450  INFO 26076 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:08:26.450  INFO 26076 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:08:28.538  INFO 26076 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:08:28.544  INFO 26076 --- [http-nio-8080-exec-6] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:08:28.544  INFO 26076 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:08:28.544  INFO 26076 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:10:41.008  INFO 26076 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@26e74368, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@34660992]
+2024-04-15 21:10:41.009  INFO 26076 --- [http-nio-8080-exec-8] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 21:10:41.048  INFO 26076 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:10:41.049  INFO 26076 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:10:43.172  INFO 26076 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:10:43.181  INFO 26076 --- [http-nio-8080-exec-9] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:10:43.181  INFO 26076 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:10:43.182  INFO 26076 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:19:07.461  INFO 26076 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:19:07.472  INFO 26076 --- [http-nio-8080-exec-1] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:19:07.472  INFO 26076 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:19:07.473  INFO 26076 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:21:48.765  INFO 26076 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:21:48.774  INFO 26076 --- [http-nio-8080-exec-3] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:21:48.775  INFO 26076 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:21:48.775  INFO 26076 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:21:49.863  INFO 26076 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:21:49.873  INFO 26076 --- [http-nio-8080-exec-4] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:21:49.873  INFO 26076 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:21:49.873  INFO 26076 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:21:50.700  INFO 26076 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:21:50.710  INFO 26076 --- [http-nio-8080-exec-5] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:21:50.710  INFO 26076 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:21:50.710  INFO 26076 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:21:51.471  INFO 26076 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:21:51.479  INFO 26076 --- [http-nio-8080-exec-6] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:21:51.479  INFO 26076 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:21:51.479  INFO 26076 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:21:52.231  INFO 26076 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:21:52.241  INFO 26076 --- [http-nio-8080-exec-7] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:21:52.241  INFO 26076 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:21:52.242  INFO 26076 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:21:52.997  INFO 26076 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:21:53.006  INFO 26076 --- [http-nio-8080-exec-8] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:21:53.006  INFO 26076 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:21:53.006  INFO 26076 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:21:53.796  INFO 26076 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:21:53.804  INFO 26076 --- [http-nio-8080-exec-9] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:21:53.804  INFO 26076 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:21:53.805  INFO 26076 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:21:55.732  INFO 26076 --- [http-nio-8080-exec-10] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@13b34833, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@254139b]
+2024-04-15 21:21:55.732  INFO 26076 --- [http-nio-8080-exec-10] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 21:21:55.768  INFO 26076 --- [http-nio-8080-exec-10] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:21:55.769  INFO 26076 --- [http-nio-8080-exec-10] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:21:58.328  INFO 26076 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:21:58.337  INFO 26076 --- [http-nio-8080-exec-1] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:21:58.338  INFO 26076 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:21:58.339  INFO 26076 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:23:44.567  INFO 26076 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
+2024-04-15 21:23:44.568  INFO 26076 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 21:23:44.570  INFO 26076 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-04-15 21:23:44.581  INFO 26076 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-04-15 21:23:45.644  INFO 31812 --- [main] c.v.s.j.p.BookManagerApplication         : Starting BookManagerApplication using Java 17.0.9 on laptop with PID 31812 (/home/vladik095/Рабочий стол/JAVA 1/target/classes started by vladik095 in /home/vladik095/Рабочий стол/JAVA 1)
+2024-04-15 21:23:45.648  INFO 31812 --- [main] c.v.s.j.p.BookManagerApplication         : No active profile set, falling back to default profiles: default
+2024-04-15 21:23:46.595  INFO 31812 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-15 21:23:46.678  INFO 31812 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 68 ms. Found 3 JPA repository interfaces.
+2024-04-15 21:23:47.639  INFO 31812 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-04-15 21:23:47.653  INFO 31812 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-15 21:23:47.653  INFO 31812 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-04-15 21:23:47.751  INFO 31812 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-15 21:23:47.751  INFO 31812 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2027 ms
+2024-04-15 21:23:48.019  INFO 31812 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-15 21:23:48.075  INFO 31812 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
+2024-04-15 21:23:48.247  INFO 31812 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-04-15 21:23:48.354  INFO 31812 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-15 21:23:48.766  INFO 31812 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-15 21:23:48.802  INFO 31812 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-04-15 21:23:49.506  INFO 31812 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-15 21:23:49.516  INFO 31812 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 21:23:49.544  INFO 31812 --- [main] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is initialized
+2024-04-15 21:23:50.821  WARN 31812 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-15 21:23:52.278  INFO 31812 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-04-15 21:23:52.287  INFO 31812 --- [main] c.v.s.j.p.BookManagerApplication         : Started BookManagerApplication in 7.167 seconds (JVM running for 7.611)
+2024-04-15 21:24:02.016  INFO 31812 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-15 21:24:02.016  INFO 31812 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-15 21:24:02.019  INFO 31812 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2024-04-15 21:24:02.061  INFO 31812 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:24:02.261  INFO 31812 --- [http-nio-8080-exec-1] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:24:02.262  INFO 31812 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:24:02.262  INFO 31812 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:24:05.723  INFO 31812 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@4a946ce0, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@1fcb38db]
+2024-04-15 21:24:05.725  INFO 31812 --- [http-nio-8080-exec-2] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 21:24:05.797 ERROR 31812 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After throwing execution(AuthorController.createOrUpdateAuthorsBulk(..)), exception: detached entity passed to persist: com.vladislav.spring.jpa.postgresql.model.Book; nested exception is org.hibernate.PersistentObjectException: detached entity passed to persist: com.vladislav.spring.jpa.postgresql.model.Book
+2024-04-15 21:24:05.797  INFO 31812 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:24:05.800 ERROR 31812 --- [http-nio-8080-exec-2] c.v.s.j.p.exception.ExceptionManager     : Exception occurred: ErrorMessage(statusCode=500, timestamp=Mon Apr 15 21:24:05 MSK 2024, message=detached entity passed to persist: com.vladislav.spring.jpa.postgresql.model.Book; nested exception is org.hibernate.PersistentObjectException: detached entity passed to persist: com.vladislav.spring.jpa.postgresql.model.Book, description=uri=/authors/bulk)
+2024-04-15 21:25:21.310  INFO 31812 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
+2024-04-15 21:25:21.311  INFO 31812 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 21:25:21.314  INFO 31812 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-04-15 21:25:21.327  INFO 31812 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-04-15 21:25:23.584  INFO 32668 --- [main] c.v.s.j.p.BookManagerApplication         : Starting BookManagerApplication using Java 17.0.9 on laptop with PID 32668 (/home/vladik095/Рабочий стол/JAVA 1/target/classes started by vladik095 in /home/vladik095/Рабочий стол/JAVA 1)
+2024-04-15 21:25:23.588  INFO 32668 --- [main] c.v.s.j.p.BookManagerApplication         : No active profile set, falling back to default profiles: default
+2024-04-15 21:25:24.600  INFO 32668 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-15 21:25:24.675  INFO 32668 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 63 ms. Found 3 JPA repository interfaces.
+2024-04-15 21:25:25.685  INFO 32668 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-04-15 21:25:25.699  INFO 32668 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-15 21:25:25.699  INFO 32668 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-04-15 21:25:25.792  INFO 32668 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-15 21:25:25.793  INFO 32668 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2130 ms
+2024-04-15 21:25:26.088  INFO 32668 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-15 21:25:26.145  INFO 32668 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
+2024-04-15 21:25:26.314  INFO 32668 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-04-15 21:25:26.418  INFO 32668 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-15 21:25:26.852  INFO 32668 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-15 21:25:26.887  INFO 32668 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-04-15 21:25:27.676  INFO 32668 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-15 21:25:27.686  INFO 32668 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 21:25:27.711  INFO 32668 --- [main] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is initialized
+2024-04-15 21:25:29.104  WARN 32668 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-15 21:25:30.232  INFO 32668 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-04-15 21:25:30.240  INFO 32668 --- [main] c.v.s.j.p.BookManagerApplication         : Started BookManagerApplication in 7.348 seconds (JVM running for 7.889)
+2024-04-15 21:25:31.128  INFO 32668 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-15 21:25:31.128  INFO 32668 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-15 21:25:31.130  INFO 32668 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-04-15 21:25:31.164  INFO 32668 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:25:31.348  INFO 32668 --- [http-nio-8080-exec-1] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:25:31.349  INFO 32668 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:25:31.349  INFO 32668 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:25:33.829  INFO 32668 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@2b27bdd7, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@6635c5b]
+2024-04-15 21:25:33.830  INFO 32668 --- [http-nio-8080-exec-2] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 21:25:33.939  INFO 32668 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:25:33.939  INFO 32668 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:25:38.222  INFO 32668 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:25:38.252  INFO 32668 --- [http-nio-8080-exec-3] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:25:38.252  INFO 32668 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:25:38.253  INFO 32668 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:26:13.236  INFO 32668 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:26:13.249  INFO 32668 --- [http-nio-8080-exec-4] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:26:13.250  INFO 32668 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:26:13.250  INFO 32668 --- [http-nio-8080-exec-4] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:26:22.596  INFO 32668 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@27c77d0, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@7bd2e276]
+2024-04-15 21:26:22.597  INFO 32668 --- [http-nio-8080-exec-5] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 21:26:22.639  INFO 32668 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:26:22.640  INFO 32668 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:26:24.557  INFO 32668 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:26:24.574  INFO 32668 --- [http-nio-8080-exec-6] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:26:24.574  INFO 32668 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:26:24.575  INFO 32668 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:32:42.092  INFO 32668 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
+2024-04-15 21:32:42.093  INFO 32668 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 21:32:42.095  INFO 32668 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-04-15 21:32:42.107  INFO 32668 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-04-15 21:32:43.226  INFO 35793 --- [main] c.v.s.j.p.BookManagerApplication         : Starting BookManagerApplication using Java 17.0.9 on laptop with PID 35793 (/home/vladik095/Рабочий стол/JAVA 1/target/classes started by vladik095 in /home/vladik095/Рабочий стол/JAVA 1)
+2024-04-15 21:32:43.230  INFO 35793 --- [main] c.v.s.j.p.BookManagerApplication         : No active profile set, falling back to default profiles: default
+2024-04-15 21:32:44.078  INFO 35793 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-15 21:32:44.154  INFO 35793 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 65 ms. Found 3 JPA repository interfaces.
+2024-04-15 21:32:45.149  INFO 35793 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-04-15 21:32:45.163  INFO 35793 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-15 21:32:45.164  INFO 35793 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-04-15 21:32:45.260  INFO 35793 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-15 21:32:45.260  INFO 35793 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1946 ms
+2024-04-15 21:32:45.588  INFO 35793 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-15 21:32:45.645  INFO 35793 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
+2024-04-15 21:32:45.823  INFO 35793 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-04-15 21:32:45.937  INFO 35793 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-15 21:32:46.368  INFO 35793 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-15 21:32:46.406  INFO 35793 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-04-15 21:32:47.220  INFO 35793 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-15 21:32:47.232  INFO 35793 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 21:32:47.266  INFO 35793 --- [main] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is initialized
+2024-04-15 21:32:48.567  WARN 35793 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-15 21:32:49.801  INFO 35793 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-04-15 21:32:49.810  INFO 35793 --- [main] c.v.s.j.p.BookManagerApplication         : Started BookManagerApplication in 7.123 seconds (JVM running for 7.607)
+2024-04-15 21:32:50.602  INFO 35793 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-15 21:32:50.602  INFO 35793 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-15 21:32:50.603  INFO 35793 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-15 21:32:50.624  INFO 35793 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:32:50.719  INFO 35793 --- [http-nio-8080-exec-1] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:32:50.720  INFO 35793 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:32:50.720  INFO 35793 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:32:53.603  INFO 35793 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@6f5f267c, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@211ad286]
+2024-04-15 21:32:53.604  INFO 35793 --- [http-nio-8080-exec-2] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 21:32:53.705  INFO 35793 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:32:53.705  INFO 35793 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:32:55.429  INFO 35793 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:32:55.456  INFO 35793 --- [http-nio-8080-exec-3] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:32:55.457  INFO 35793 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:32:55.457  INFO 35793 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:35:18.881  INFO 35793 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:35:18.894  INFO 35793 --- [http-nio-8080-exec-5] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:35:18.894  INFO 35793 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:35:18.894  INFO 35793 --- [http-nio-8080-exec-5] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:35:19.807  INFO 35793 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:35:19.818  INFO 35793 --- [http-nio-8080-exec-6] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:35:19.819  INFO 35793 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:35:19.819  INFO 35793 --- [http-nio-8080-exec-6] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:35:20.737  INFO 35793 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:35:20.748  INFO 35793 --- [http-nio-8080-exec-7] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:35:20.748  INFO 35793 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:35:20.748  INFO 35793 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:35:34.950  INFO 35793 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@9595855, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@396c41e6]
+2024-04-15 21:35:34.951  INFO 35793 --- [http-nio-8080-exec-8] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 21:35:35.002  INFO 35793 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:35:35.003  INFO 35793 --- [http-nio-8080-exec-8] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:35:37.230  INFO 35793 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:35:37.245  INFO 35793 --- [http-nio-8080-exec-9] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:35:37.245  INFO 35793 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:35:37.246  INFO 35793 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:35:51.111  INFO 35793 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
+2024-04-15 21:35:51.111  INFO 35793 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 21:35:51.113  INFO 35793 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-04-15 21:35:51.125  INFO 35793 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-04-15 21:35:52.239  INFO 37181 --- [main] c.v.s.j.p.BookManagerApplication         : Starting BookManagerApplication using Java 17.0.9 on laptop with PID 37181 (/home/vladik095/Рабочий стол/JAVA 1/target/classes started by vladik095 in /home/vladik095/Рабочий стол/JAVA 1)
+2024-04-15 21:35:52.243  INFO 37181 --- [main] c.v.s.j.p.BookManagerApplication         : No active profile set, falling back to default profiles: default
+2024-04-15 21:35:53.109  INFO 37181 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-15 21:35:53.182  INFO 37181 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 61 ms. Found 3 JPA repository interfaces.
+2024-04-15 21:35:54.160  INFO 37181 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-04-15 21:35:54.175  INFO 37181 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-15 21:35:54.176  INFO 37181 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-04-15 21:35:54.258  INFO 37181 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-15 21:35:54.258  INFO 37181 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1949 ms
+2024-04-15 21:35:54.586  INFO 37181 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-15 21:35:54.642  INFO 37181 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
+2024-04-15 21:35:54.821  INFO 37181 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-04-15 21:35:54.933  INFO 37181 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-15 21:35:55.371  INFO 37181 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-15 21:35:55.407  INFO 37181 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-04-15 21:35:56.184  INFO 37181 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-15 21:35:56.200  INFO 37181 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 21:35:56.222  INFO 37181 --- [main] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is initialized
+2024-04-15 21:35:57.658  WARN 37181 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-15 21:35:59.070  INFO 37181 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-04-15 21:35:59.079  INFO 37181 --- [main] c.v.s.j.p.BookManagerApplication         : Started BookManagerApplication in 7.401 seconds (JVM running for 7.854)
+2024-04-15 21:36:01.093  INFO 37181 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
+2024-04-15 21:36:01.094  INFO 37181 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 21:36:01.096  INFO 37181 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-04-15 21:36:01.105  INFO 37181 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-04-15 21:36:05.660  INFO 37534 --- [main] c.v.s.j.p.BookManagerApplication         : Starting BookManagerApplication using Java 17.0.9 on laptop with PID 37534 (/home/vladik095/Рабочий стол/JAVA 1/target/classes started by vladik095 in /home/vladik095/Рабочий стол/JAVA 1)
+2024-04-15 21:36:05.665  INFO 37534 --- [main] c.v.s.j.p.BookManagerApplication         : No active profile set, falling back to default profiles: default
+2024-04-15 21:36:06.577  INFO 37534 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-15 21:36:06.649  INFO 37534 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 60 ms. Found 3 JPA repository interfaces.
+2024-04-15 21:36:07.715  INFO 37534 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-04-15 21:36:07.729  INFO 37534 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-15 21:36:07.729  INFO 37534 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-04-15 21:36:07.820  INFO 37534 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-15 21:36:07.821  INFO 37534 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2080 ms
+2024-04-15 21:36:08.086  INFO 37534 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-15 21:36:08.140  INFO 37534 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
+2024-04-15 21:36:08.310  INFO 37534 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-04-15 21:36:08.419  INFO 37534 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-15 21:36:08.910  INFO 37534 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-15 21:36:08.948  INFO 37534 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-04-15 21:36:09.663  INFO 37534 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-15 21:36:09.671  INFO 37534 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 21:36:09.690  INFO 37534 --- [main] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is initialized
+2024-04-15 21:36:10.595  WARN 37534 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-15 21:36:11.511  INFO 37534 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-04-15 21:36:11.524  INFO 37534 --- [main] c.v.s.j.p.BookManagerApplication         : Started BookManagerApplication in 6.486 seconds (JVM running for 6.999)
+2024-04-15 21:36:11.791  INFO 37534 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-15 21:36:11.791  INFO 37534 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-15 21:36:11.792  INFO 37534 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-04-15 21:36:11.813  INFO 37534 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:36:11.909  INFO 37534 --- [http-nio-8080-exec-1] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:36:11.910  INFO 37534 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:36:11.910  INFO 37534 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:36:15.096  INFO 37534 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@1ec7e802, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@66577ec3]
+2024-04-15 21:36:15.096  INFO 37534 --- [http-nio-8080-exec-2] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 21:36:15.205  INFO 37534 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:36:15.205  INFO 37534 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 21:36:17.789  INFO 37534 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:36:17.814  INFO 37534 --- [http-nio-8080-exec-3] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:36:17.814  INFO 37534 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:36:17.815  INFO 37534 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 21:36:52.819  INFO 37534 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
+2024-04-15 21:36:52.820  INFO 37534 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 21:36:52.823  INFO 37534 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-04-15 21:36:52.835  INFO 37534 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-04-15 21:36:53.960  INFO 38139 --- [main] c.v.s.j.p.BookManagerApplication         : Starting BookManagerApplication using Java 17.0.9 on laptop with PID 38139 (/home/vladik095/Рабочий стол/JAVA 1/target/classes started by vladik095 in /home/vladik095/Рабочий стол/JAVA 1)
+2024-04-15 21:36:53.963  INFO 38139 --- [main] c.v.s.j.p.BookManagerApplication         : No active profile set, falling back to default profiles: default
+2024-04-15 21:36:54.864  INFO 38139 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-15 21:36:54.956  INFO 38139 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 79 ms. Found 3 JPA repository interfaces.
+2024-04-15 21:36:55.944  INFO 38139 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-04-15 21:36:55.958  INFO 38139 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-15 21:36:55.959  INFO 38139 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-04-15 21:36:56.050  INFO 38139 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-15 21:36:56.051  INFO 38139 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2018 ms
+2024-04-15 21:36:56.334  INFO 38139 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-15 21:36:56.391  INFO 38139 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
+2024-04-15 21:36:56.562  INFO 38139 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-04-15 21:36:56.678  INFO 38139 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-15 21:36:57.103  INFO 38139 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-15 21:36:57.142  INFO 38139 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-04-15 21:36:57.921  INFO 38139 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-15 21:36:57.930  INFO 38139 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 21:36:57.955  INFO 38139 --- [main] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is initialized
+2024-04-15 21:36:59.359  WARN 38139 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-15 21:37:00.917  INFO 38139 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-04-15 21:37:00.927  INFO 38139 --- [main] c.v.s.j.p.BookManagerApplication         : Started BookManagerApplication in 7.521 seconds (JVM running for 7.994)
+2024-04-15 21:37:01.204  INFO 38139 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-15 21:37:01.205  INFO 38139 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-15 21:37:01.206  INFO 38139 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-15 21:37:01.231  INFO 38139 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 21:37:01.360  INFO 38139 --- [http-nio-8080-exec-1] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 21:37:01.360  INFO 38139 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 21:37:01.360  INFO 38139 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 22:02:35.077  INFO 38139 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
+2024-04-15 22:02:35.077  INFO 38139 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 22:02:35.080  INFO 38139 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-04-15 22:02:35.090  INFO 38139 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-04-15 22:02:36.137  INFO 46392 --- [main] c.v.s.j.p.BookManagerApplication         : Starting BookManagerApplication using Java 17.0.9 on laptop with PID 46392 (/home/vladik095/Рабочий стол/JAVA 1/target/classes started by vladik095 in /home/vladik095/Рабочий стол/JAVA 1)
+2024-04-15 22:02:36.140  INFO 46392 --- [main] c.v.s.j.p.BookManagerApplication         : No active profile set, falling back to default profiles: default
+2024-04-15 22:02:37.014  INFO 46392 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-15 22:02:37.097  INFO 46392 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 70 ms. Found 3 JPA repository interfaces.
+2024-04-15 22:02:38.080  INFO 46392 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-04-15 22:02:38.174  INFO 46392 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1967 ms
+2024-04-15 22:02:38.448  INFO 46392 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-15 22:02:38.504  INFO 46392 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
+2024-04-15 22:02:38.673  INFO 46392 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-04-15 22:02:38.780  INFO 46392 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-15 22:02:39.193  INFO 46392 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-15 22:02:39.229  INFO 46392 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-04-15 22:02:39.950  INFO 46392 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-15 22:02:39.960  INFO 46392 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 22:02:39.986  INFO 46392 --- [main] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is initialized
+2024-04-15 22:02:41.228  WARN 46392 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-15 22:02:42.768  INFO 46392 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-04-15 22:02:42.781  INFO 46392 --- [main] c.v.s.j.p.BookManagerApplication         : Started BookManagerApplication in 7.169 seconds (JVM running for 7.603)
+2024-04-15 22:02:44.795  INFO 46392 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
+2024-04-15 22:02:44.795  INFO 46392 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 22:02:44.797  INFO 46392 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-04-15 22:02:44.806  INFO 46392 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-04-15 22:02:51.513  INFO 46731 --- [main] c.v.s.j.p.BookManagerApplication         : Starting BookManagerApplication using Java 17.0.9 on laptop with PID 46731 (/home/vladik095/Рабочий стол/JAVA 1/target/classes started by vladik095 in /home/vladik095/Рабочий стол/JAVA 1)
+2024-04-15 22:02:51.516  INFO 46731 --- [main] c.v.s.j.p.BookManagerApplication         : No active profile set, falling back to default profiles: default
+2024-04-15 22:02:52.629  INFO 46731 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-15 22:02:52.719  INFO 46731 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 75 ms. Found 3 JPA repository interfaces.
+2024-04-15 22:02:53.733  INFO 46731 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-04-15 22:02:53.747  INFO 46731 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-15 22:02:53.748  INFO 46731 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-04-15 22:02:53.836  INFO 46731 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-15 22:02:53.836  INFO 46731 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2228 ms
+2024-04-15 22:02:54.128  INFO 46731 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-15 22:02:54.186  INFO 46731 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
+2024-04-15 22:02:54.376  INFO 46731 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-04-15 22:02:54.488  INFO 46731 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-15 22:02:54.920  INFO 46731 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-15 22:02:54.956  INFO 46731 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-04-15 22:02:55.692  INFO 46731 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-15 22:02:55.700  INFO 46731 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 22:02:55.719  INFO 46731 --- [main] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is initialized
+2024-04-15 22:02:56.577  WARN 46731 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-15 22:02:57.575  INFO 46731 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-04-15 22:02:57.586  INFO 46731 --- [main] c.v.s.j.p.BookManagerApplication         : Started BookManagerApplication in 6.644 seconds (JVM running for 7.13)
+2024-04-15 22:02:57.916  INFO 46731 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-15 22:02:57.916  INFO 46731 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-15 22:02:57.918  INFO 46731 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-04-15 22:02:57.939  INFO 46731 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 22:02:58.054  INFO 46731 --- [http-nio-8080-exec-1] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 22:02:58.054  INFO 46731 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 22:02:58.054  INFO 46731 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 22:03:10.098  INFO 46731 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
+2024-04-15 22:03:10.098  INFO 46731 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 22:03:10.101  INFO 46731 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-04-15 22:03:10.113  INFO 46731 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-04-15 22:42:39.144  INFO 61655 --- [main] c.v.s.j.p.BookManagerApplication         : Starting BookManagerApplication using Java 17.0.9 on laptop with PID 61655 (/home/vladik095/Рабочий стол/JAVA 1/target/classes started by vladik095 in /home/vladik095/Рабочий стол/JAVA 1)
+2024-04-15 22:42:39.147  INFO 61655 --- [main] c.v.s.j.p.BookManagerApplication         : No active profile set, falling back to default profiles: default
+2024-04-15 22:42:40.020  INFO 61655 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-15 22:42:40.100  INFO 61655 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 67 ms. Found 3 JPA repository interfaces.
+2024-04-15 22:42:41.237  INFO 61655 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-04-15 22:42:41.250  INFO 61655 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-15 22:42:41.251  INFO 61655 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-04-15 22:42:41.336  INFO 61655 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-15 22:42:41.336  INFO 61655 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2128 ms
+2024-04-15 22:42:41.619  INFO 61655 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-15 22:42:41.682  INFO 61655 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
+2024-04-15 22:42:41.887  INFO 61655 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-04-15 22:42:41.997  INFO 61655 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-15 22:42:42.432  INFO 61655 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-15 22:42:42.469  INFO 61655 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-04-15 22:42:43.244  INFO 61655 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-15 22:42:43.253  INFO 61655 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 22:42:43.278  INFO 61655 --- [main] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is initialized
+2024-04-15 22:42:44.667  WARN 61655 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-15 22:42:45.829  INFO 61655 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-04-15 22:42:45.840  INFO 61655 --- [main] c.v.s.j.p.BookManagerApplication         : Started BookManagerApplication in 7.189 seconds (JVM running for 7.651)
+2024-04-15 22:42:46.749  INFO 61655 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-15 22:42:46.749  INFO 61655 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-15 22:42:46.751  INFO 61655 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-04-15 22:42:46.783  INFO 61655 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 22:42:46.983  INFO 61655 --- [http-nio-8080-exec-1] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 22:42:46.984  INFO 61655 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 22:42:46.984  INFO 61655 --- [http-nio-8080-exec-1] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 22:42:52.294  INFO 61655 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(ResponseEntity com.vladislav.spring.jpa.postgresql.controller.AuthorController.createOrUpdateAuthorsBulk(List)), args=[com.vladislav.spring.jpa.postgresql.dto.AuthorDto@4e2018a5, com.vladislav.spring.jpa.postgresql.dto.AuthorDto@1388ce15]
+2024-04-15 22:42:52.295  INFO 61655 --- [http-nio-8080-exec-2] c.v.s.j.p.controller.AuthorController    : Creating or updating authors in bulk
+2024-04-15 22:42:52.387  INFO 61655 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 22:42:52.388  INFO 61655 --- [http-nio-8080-exec-2] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.createOrUpdateAuthorsBulk(..))
+2024-04-15 22:42:54.399  INFO 61655 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : Before execution(List com.vladislav.spring.jpa.postgresql.controller.AuthorController.getAllAuthors()), args=
+2024-04-15 22:42:54.415  INFO 61655 --- [http-nio-8080-exec-3] c.v.s.j.p.controller.AuthorController    : All authors fetched successfully.
+2024-04-15 22:42:54.416  INFO 61655 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
+2024-04-15 22:42:54.416  INFO 61655 --- [http-nio-8080-exec-3] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-04-15 22:43:02.690  INFO 61655 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
+2024-04-15 22:43:02.691  INFO 61655 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-15 22:43:02.693  INFO 61655 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-04-15 22:43:02.704  INFO 61655 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

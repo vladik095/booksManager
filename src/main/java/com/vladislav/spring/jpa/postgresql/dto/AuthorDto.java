@@ -11,10 +11,17 @@ import java.util.Set;
 @JsonIdentityReference(alwaysAsId = false)
 public class AuthorDto {
     private Long id;
-
     private String name;
-
     private Set<BookDto> books = new HashSet<>();
+
+    public AuthorDto() {
+    }
+
+    public AuthorDto(Long id, String name, Set<BookDto> books) {
+        this.id = id;
+        this.name = name;
+        this.books = books;
+    }
 
     public Long getId() {
         return id;

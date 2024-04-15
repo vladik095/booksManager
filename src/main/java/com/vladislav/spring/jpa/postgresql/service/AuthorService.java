@@ -1,12 +1,19 @@
 package com.vladislav.spring.jpa.postgresql.service;
 
 import com.vladislav.spring.jpa.postgresql.dto.AuthorDto;
+import com.vladislav.spring.jpa.postgresql.dto.BookDto;
 import com.vladislav.spring.jpa.postgresql.model.Author;
+import com.vladislav.spring.jpa.postgresql.model.Book;
 import com.vladislav.spring.jpa.postgresql.repository.AuthorRepository;
-import org.springframework.stereotype.Service;
+import java.util.HashSet;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
 
 @Service
 public class AuthorService {
@@ -22,7 +29,7 @@ public class AuthorService {
     public List<AuthorDto> getAllAuthors() {
         return authorRepository.findAll().stream()
                 .map(this::convertToDto)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public AuthorDto getAuthorById(Long id) {
@@ -45,7 +52,6 @@ public class AuthorService {
                 .orElseThrow(() -> new IllegalArgumentException("Author with id " + id + " not found"));
 
         existingAuthor.setName(updatedAuthorDto.getName());
-
         authorRepository.save(existingAuthor);
     }
 
@@ -64,5 +70,44 @@ public class AuthorService {
         author.setId(authorDto.getId());
         author.setName(authorDto.getName());
         return author;
+    }
+
+    public List<AuthorDto> createOrUpdateAuthorsBulk(List<AuthorDto> authorList) {
+        return authorList.stream()
+                .map(authorDto -> createOrUpdateAuthor(authorDto))
+                .collect(Collectors.toList());
+    }
+
+    private AuthorDto createOrUpdateAuthor(AuthorDto authorDto) {
+        Author author;
+        if (authorDto.getId() != null) {
+            Optional<Author> existingAuthorOpt = authorRepository.findById(authorDto.getId());
+            if (existingAuthorOpt.isPresent()) {
+                author = existingAuthorOpt.get();
+                // Обновляем данные существующего автора
+                author.setName(authorDto.getName());
+                // Очищаем список книг у автора перед обновлением
+                author.getBooks().clear();
+            } else {
+                // Создаем нового автора
+                author = new Author();
+                author.setName(authorDto.getName());
+            }
+        } else {
+            // Создаем нового автора
+            author = new Author();
+            author.setName(authorDto.getName());
+        }
+
+        // Проходим по списку книг и устанавливаем связь с автором
+        for (BookDto bookDto : authorDto.getBooks()) {
+            Book book = new Book();
+            book.setTitle(bookDto.getTitle());
+            book.setAuthor(author); // Устанавливаем связь с автором
+            author.getBooks().add(book);
+        }
+
+        authorRepository.save(author);
+        return convertToDto(author);
     }
 }

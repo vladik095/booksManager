@@ -3,9 +3,8 @@ package com.vladislav.spring.jpa.postgresql.service;
 import com.vladislav.spring.jpa.postgresql.dto.TagDto;
 import com.vladislav.spring.jpa.postgresql.model.Tag;
 import com.vladislav.spring.jpa.postgresql.repository.TagRepository;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 @Service
 public class TagService {

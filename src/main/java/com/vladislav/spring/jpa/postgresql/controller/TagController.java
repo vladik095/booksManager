@@ -2,13 +2,11 @@ package com.vladislav.spring.jpa.postgresql.controller;
 
 import com.vladislav.spring.jpa.postgresql.dto.TagDto;
 import com.vladislav.spring.jpa.postgresql.service.TagService;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/tags")

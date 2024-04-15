@@ -7,7 +7,7 @@ public class BookDto {
     private Long id;
 
     private String title;
-
+    private AuthorDto author;
     private Set<TagDto> tags;
 
     public BookDto() {
@@ -40,5 +40,14 @@ public class BookDto {
 
     public void setTags(Set<TagDto> tags) {
         this.tags = tags;
+
+    }
+
+    public AuthorDto getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(AuthorDto author) {
+        this.author = author;
     }
 }
