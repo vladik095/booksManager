@@ -283,12 +283,16 @@ class BookServiceTest {
         when(bookRepository.findById(anyLong())).thenReturn(Optional.empty());
 
         // Act & Assert
-        assertThrows(ResourceNotFoundException.class, () -> {
-            bookService.updateBook(1L, new BookDto());
-        }, "Expected updateBook to throw ResourceNotFoundException");
+        assertThrows(ResourceNotFoundException.class, this::attemptToUpdateNonExistentBook,
+                "Expected updateBook to throw ResourceNotFoundException");
 
         // Verify that the method save was not called
         verify(bookRepository, never()).save(any());
+    }
+
+    // Method to attempt to update a non-existent book
+    private void attemptToUpdateNonExistentBook() {
+        bookService.updateBook(1L, new BookDto());
     }
 
     @Test
