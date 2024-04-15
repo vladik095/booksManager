@@ -99,7 +99,7 @@ public class AuthorService {
         for (BookDto bookDto : authorDto.getBooks()) {
             Book book = new Book();
             book.setTitle(bookDto.getTitle());
-            book.setAuthor(author); // Устанавливаем связь с автором
+            book.setAuthor(author);
             author.getBooks().add(book);
         }
 

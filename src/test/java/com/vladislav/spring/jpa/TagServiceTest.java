@@ -33,7 +33,6 @@ class TagServiceTest {
 
     @Test
     void getAllTags() {
-        // Arrange
         Tag tag1 = new Tag();
         tag1.setId(1L);
         tag1.setName("Tag 1");
@@ -44,10 +43,8 @@ class TagServiceTest {
 
         when(tagRepository.findAll()).thenReturn(List.of(tag1, tag2));
 
-        // Act
         List<TagDto> tags = tagService.getAllTags();
 
-        // Assert
         assertEquals(2, tags.size());
         assertEquals("Tag 1", tags.get(0).getName());
         assertEquals("Tag 2", tags.get(1).getName());
@@ -55,23 +52,19 @@ class TagServiceTest {
 
     @Test
     void getTagById() {
-        // Arrange
         Tag tag = new Tag();
         tag.setId(1L);
         tag.setName("Tag");
 
         when(tagRepository.findById(1L)).thenReturn(Optional.of(tag));
 
-        // Act
         TagDto tagDto = tagService.getTagById(1L);
 
-        // Assert
         assertEquals("Tag", tagDto.getName());
     }
 
     @Test
     void addTag() {
-        // Arrange
         TagDto tagDto = new TagDto();
         tagDto.setName("New Tag");
 
@@ -80,17 +73,14 @@ class TagServiceTest {
         savedTag.setName("New Tag");
 
         when(tagRepository.save(any(Tag.class))).thenReturn(savedTag);
-
-        // Act
         tagService.addTag(tagDto);
 
-        // Assert
         verify(tagRepository, times(1)).save(any(Tag.class));
     }
 
     @Test
     void updateTag() {
-        // Arrange
+
         TagDto tagDto = new TagDto();
         tagDto.setId(1L);
         tagDto.setName("Updated Tag");
@@ -101,24 +91,20 @@ class TagServiceTest {
 
         when(tagRepository.findById(1L)).thenReturn(Optional.of(existingTag));
 
-        // Act
         tagService.updateTag(1L, tagDto);
 
-        // Assert
         verify(tagRepository, times(1)).findById(1L);
         verify(tagRepository, times(1)).save(any(Tag.class));
     }
 
     @Test
     void deleteTag() {
-        // Arrange
+
         Long tagId = 1L;
 
-        // Act
         tagService.deleteTag(tagId);
 
-        // Assert
         verify(tagRepository, times(1)).deleteById(tagId);
     }
-    // Тесты для остальных методов могут быть реализованы аналогичным образом.
+
 }

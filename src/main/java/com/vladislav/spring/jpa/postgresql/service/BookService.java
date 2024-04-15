@@ -94,15 +94,13 @@ public class BookService {
                 .orElseThrow(() -> new RuntimeException(BOOK_NOT_FOUND_MESSAGE + bookId));
         Tag tag = tagRepository.findById(tagId)
                 .orElseThrow(() -> new RuntimeException(TAG_NOT_FOUND_MESSAGE + tagId));
-        // Initialize the tags set if it's null
+
         if (book.getTags() == null) {
             book.setTags(new HashSet<>());
         }
 
-        // Add the tag to the book's tags set
         book.getTags().add(tag);
 
-        // Save the book back to the repository
         bookRepository.save(book);
     }
 
@@ -189,7 +187,7 @@ public class BookService {
             bookCache.addToCache(keyword, bookDtos.stream().map(BookDto::getId).toList());
             return bookDtos;
         } else {
-            return Collections.emptyList(); // Возвращаем пустой список, если книги не найдены
+            return Collections.emptyList();
         }
     }
 
