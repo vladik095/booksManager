@@ -3,7 +3,6 @@ package com.vladislav.spring.jpa.postgresql.controller;
 import com.vladislav.spring.jpa.postgresql.dto.AuthorDto;
 import com.vladislav.spring.jpa.postgresql.exception.BadRequestException;
 import com.vladislav.spring.jpa.postgresql.service.AuthorService;
-import com.vladislav.spring.jpa.postgresql.service.RequestCounterService;
 
 import java.util.List;
 import javax.validation.Valid;
