@@ -9,7 +9,8 @@ public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("*") // Здесь можно указать разрешенные источники (origins)
+                .allowedOrigins("http://example.com", "https://example.com") // Замените на разрешенные источники
+                                                                             // (origins) вашего приложения
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Разрешенные HTTP методы
                 .allowedHeaders("*"); // Разрешенные заголовки
     }
