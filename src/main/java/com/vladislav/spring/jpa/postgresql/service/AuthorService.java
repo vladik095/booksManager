@@ -20,6 +20,8 @@ public class AuthorService {
     private final RequestCounterService requestCounterService;
     private final TagService tagService;
 
+    private static final String NOT_FOUND_MESSAGE = " not found";
+
     public AuthorService(AuthorRepository authorRepository, BookService bookService,
             RequestCounterService requestCounterService, TagService tagService) {
         this.authorRepository = authorRepository;
@@ -37,7 +39,7 @@ public class AuthorService {
 
     public AuthorDto getAuthorById(Long id) {
         Author author = authorRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Author with id " + id + " not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Author with id " + id + NOT_FOUND_MESSAGE));
         return convertToDto(author);
     }
 
@@ -52,10 +54,19 @@ public class AuthorService {
 
     public void updateAuthor(Long id, AuthorDto updatedAuthorDto) {
         Author existingAuthor = authorRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Author with id " + id + " not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Author with id " + id + NOT_FOUND_MESSAGE));
 
         existingAuthor.setName(updatedAuthorDto.getName());
         authorRepository.save(existingAuthor);
+    }
+
+    public AuthorDto getAuthorByName(String name) {
+        Author author = authorRepository.findByName(name);
+        if (author != null) {
+            return convertToDto(author);
+        } else {
+            throw new IllegalArgumentException("Author with name " + name + NOT_FOUND_MESSAGE);
+        }
     }
 
     private AuthorDto convertToDto(Author author) {
@@ -76,15 +87,6 @@ public class AuthorService {
                 })
                 .collect(Collectors.toSet()));
         return authorDto;
-    }
-
-    public AuthorDto getAuthorByName(String name) {
-        Author author = authorRepository.findByName(name);
-        if (author != null) {
-            return convertToDto(author);
-        } else {
-            throw new IllegalArgumentException("Author with name " + name + " not found");
-        }
     }
 
     private Author convertToEntity(AuthorDto authorDto) {

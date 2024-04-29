@@ -1,8 +1,5 @@
 package com.vladislav.spring.jpa.postgresql.dto;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class TagDto {
     private Long id;
 

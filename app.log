@@ -19802,3 +19802,27 @@ Caused by: java.io.IOException: Обрыв канала
 2024-04-30 00:52:00.279  INFO 95361 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-04-30 00:52:00.280  INFO 95361 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-04-30 00:52:00.286  INFO 95361 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-04-30 00:54:00.887  INFO 128722 --- [main] c.v.s.j.p.BookManagerApplication         : Starting BookManagerApplication using Java 17.0.10 on laptop with PID 128722 (/home/vladik095/Рабочий стол/JAVA 1/target/classes started by vladik095 in /home/vladik095/Рабочий стол/JAVA 1)
+2024-04-30 00:54:00.889  INFO 128722 --- [main] c.v.s.j.p.BookManagerApplication         : No active profile set, falling back to default profiles: default
+2024-04-30 00:54:01.372  INFO 128722 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-30 00:54:01.415  INFO 128722 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 36 ms. Found 3 JPA repository interfaces.
+2024-04-30 00:54:02.040  INFO 128722 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-04-30 00:54:02.050  INFO 128722 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-30 00:54:02.050  INFO 128722 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2024-04-30 00:54:02.100  INFO 128722 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-30 00:54:02.101  INFO 128722 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1179 ms
+2024-04-30 00:54:02.268  INFO 128722 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-30 00:54:02.308  INFO 128722 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
+2024-04-30 00:54:02.419  INFO 128722 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-04-30 00:54:02.484  INFO 128722 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-30 00:54:02.769  INFO 128722 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-30 00:54:02.789  INFO 128722 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-04-30 00:54:03.218  INFO 128722 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-30 00:54:03.224  INFO 128722 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-30 00:54:03.241  INFO 128722 --- [main] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is initialized
+2024-04-30 00:54:04.149  WARN 128722 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-30 00:54:05.183  INFO 128722 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-04-30 00:54:05.195  INFO 128722 --- [main] c.v.s.j.p.BookManagerApplication         : Started BookManagerApplication in 4.588 seconds (JVM running for 4.857)
+2024-04-30 00:55:58.670  INFO 128722 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-30 00:55:58.670  INFO 128722 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-30 00:55:58.671  INFO 128722 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
