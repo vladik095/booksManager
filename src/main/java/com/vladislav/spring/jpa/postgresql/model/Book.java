@@ -19,6 +19,9 @@ public class Book {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "description") // Новое поле описания
+    private String description;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     private Author author;
@@ -31,8 +34,9 @@ public class Book {
     public Book() {
     }
 
-    public Book(String title, Author author) {
+    public Book(String title, String description, Author author) {
         this.title = title;
+        this.description = description;
         this.author = author;
     }
 
@@ -50,6 +54,14 @@ public class Book {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Author getAuthor() {

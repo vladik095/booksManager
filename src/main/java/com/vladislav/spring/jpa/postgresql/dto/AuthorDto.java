@@ -1,25 +1,21 @@
 package com.vladislav.spring.jpa.postgresql.dto;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
-import java.util.HashSet;
 import java.util.Set;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-@JsonIdentityReference(alwaysAsId = false)
 public class AuthorDto {
+
     private Long id;
     private String name;
-    private Set<BookDto> books = new HashSet<>();
+    private String description; // Новое поле описания
+    private Set<BookDto> books;
 
     public AuthorDto() {
     }
 
-    public AuthorDto(Long id, String name, Set<BookDto> books) {
+    public AuthorDto(Long id, String name, String description, Set<BookDto> books) {
         this.id = id;
         this.name = name;
+        this.description = description;
         this.books = books;
     }
 
@@ -37,6 +33,14 @@ public class AuthorDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Set<BookDto> getBooks() {

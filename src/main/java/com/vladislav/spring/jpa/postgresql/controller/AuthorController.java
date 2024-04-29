@@ -3,6 +3,8 @@ package com.vladislav.spring.jpa.postgresql.controller;
 import com.vladislav.spring.jpa.postgresql.dto.AuthorDto;
 import com.vladislav.spring.jpa.postgresql.exception.BadRequestException;
 import com.vladislav.spring.jpa.postgresql.service.AuthorService;
+import com.vladislav.spring.jpa.postgresql.service.RequestCounterService;
+
 import java.util.List;
 import javax.validation.Valid;
 import org.slf4j.Logger;
@@ -37,6 +39,18 @@ public class AuthorController {
             return ResponseEntity.ok(author);
         } else {
             logger.error("Author with ID {} not found.", id);
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/getByName/{name}")
+    public ResponseEntity<AuthorDto> fetchAuthorByName(@PathVariable String name) {
+        AuthorDto author = authorService.getAuthorByName(name);
+        if (author != null) {
+            logger.info("Author with name {} fetched successfully.", name);
+            return ResponseEntity.ok(author);
+        } else {
+            logger.error("Author with name {} not found.", name);
             return ResponseEntity.notFound().build();
         }
     }

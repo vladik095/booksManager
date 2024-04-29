@@ -68,7 +68,7 @@ public class BookController {
         return ResponseEntity.ok(SUCCESS_MESSAGE);
     }
 
-    @PostMapping("/{bookId}/tags/{tagId}")
+    @PostMapping("/{bookId}/tags/{tagId}") // Изменено с @GetMapping на @PostMapping
     public ResponseEntity<Void> addTagToBook(@PathVariable Long bookId, @PathVariable Long tagId) {
         bookService.addTagToBook(bookId, tagId);
         logger.info("Tag added to book with ID {} successfully.", bookId);

@@ -17,13 +17,19 @@ public class AuthorService {
 
     private final AuthorRepository authorRepository;
     private final BookService bookService;
+    private final RequestCounterService requestCounterService;
+    private final TagService tagService;
 
-    public AuthorService(AuthorRepository authorRepository, BookService bookService) {
+    public AuthorService(AuthorRepository authorRepository, BookService bookService,
+            RequestCounterService requestCounterService, TagService tagService) {
         this.authorRepository = authorRepository;
         this.bookService = bookService;
+        this.requestCounterService = requestCounterService;
+        this.tagService = tagService;
     }
 
     public List<AuthorDto> getAllAuthors() {
+        requestCounterService.incrementCounter();
         return authorRepository.findAll().stream()
                 .map(this::convertToDto)
                 .toList();
@@ -56,16 +62,36 @@ public class AuthorService {
         AuthorDto authorDto = new AuthorDto();
         authorDto.setId(author.getId());
         authorDto.setName(author.getName());
+        authorDto.setDescription(author.getDescription());
         authorDto.setBooks(author.getBooks().stream()
-                .map(bookService::convertToDto)
+                .map(book -> {
+                    BookDto bookDto = bookService.convertToDto(book);
+                    // Загрузка тегов для каждой книги
+                    bookDto.setTags(book.getTags().stream()
+                            .map(tagService::convertToDto)
+                            .collect(Collectors.toSet()));
+                    // Устанавливаем теги без поля books
+
+                    return bookDto;
+                })
                 .collect(Collectors.toSet()));
         return authorDto;
+    }
+
+    public AuthorDto getAuthorByName(String name) {
+        Author author = authorRepository.findByName(name);
+        if (author != null) {
+            return convertToDto(author);
+        } else {
+            throw new IllegalArgumentException("Author with name " + name + " not found");
+        }
     }
 
     private Author convertToEntity(AuthorDto authorDto) {
         Author author = new Author();
         author.setId(authorDto.getId());
         author.setName(authorDto.getName());
+        author.setDescription(authorDto.getDescription()); // Добавлено присвоение описания автора
         return author;
     }
 

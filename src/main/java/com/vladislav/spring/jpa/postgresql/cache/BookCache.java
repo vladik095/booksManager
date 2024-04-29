@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class BookCache {
-    private static final int MAX_CACHE_SIZE = 2;
+    private static final int MAX_CACHE_SIZE = 1;
     private final Map<String, List<Long>> cache = new ConcurrentHashMap<>();
     private final Map<String, Long> accessOrder = new LinkedHashMap<>();
     private final Logger logger = LoggerFactory.getLogger(BookCache.class);

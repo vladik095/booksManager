@@ -8,8 +8,6 @@ public class TagDto {
 
     private String name;
 
-    private Set<BookDto> books = new HashSet<>();
-
     public Long getId() {
         return id;
     }
@@ -26,11 +24,4 @@ public class TagDto {
         this.name = name;
     }
 
-    public Set<BookDto> getBooks() {
-        return books;
-    }
-
-    public void setBooks(Set<BookDto> books) {
-        this.books = books;
-    }
 }

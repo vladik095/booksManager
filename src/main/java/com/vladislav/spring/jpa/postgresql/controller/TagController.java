@@ -19,6 +19,18 @@ public class TagController {
         this.tagService = tagService;
     }
 
+    @GetMapping("/getByName/{name}")
+    public ResponseEntity<TagDto> fetchTagByName(@PathVariable String name) {
+        TagDto tag = tagService.getTagByName(name);
+        if (tag != null) {
+            logger.info("Tag with name {} fetched successfully.", name);
+            return ResponseEntity.ok(tag);
+        } else {
+            logger.error("Tag with name {} not found.", name);
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @GetMapping
     public ResponseEntity<List<TagDto>> getAllTags() {
         List<TagDto> tags = tagService.getAllTags();

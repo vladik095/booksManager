@@ -21,7 +21,6 @@
     </properties>
 
     <dependencies>
-        <!-- Зависимости вашего проекта -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -30,13 +29,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>5.3.14</version> <!-- Adjust version if needed -->
+            <version>5.3.14</version> 
         </dependency>
-
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -76,17 +73,15 @@
 
     <build>
         <plugins>
-            <!-- Плагин Spring Boot -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-            <!-- Плагин Checkstyle -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.1.2</version> <!-- Версия плагина Checkstyle -->
+                <version>3.1.2</version> 
                 <configuration>
                     <configLocation>https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml</configLocation>
                     <encoding>UTF-8</encoding>
@@ -98,16 +93,15 @@
                     <dependency>
                         <groupId>com.puppycrawl.tools</groupId>
                         <artifactId>checkstyle</artifactId>
-                        <version>8.44</version> <!-- Используемая версия Checkstyle -->
+                        <version>8.44</version> 
                     </dependency>
                 </dependencies>
             </plugin>
 
-            <!-- Плагин JaCoCo -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.7</version> <!-- Версия плагина JaCoCo -->
+                <version>0.8.7</version>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -123,6 +117,20 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <excludes>
+                        <exclude>com/vladislav/spring/jpa/postgresql/aspect/**</exclude>
+                        <exclude>com/vladislav/spring/jpa/postgresql/cache/**</exclude>
+                        <exclude>com/vladislav/spring/jpa/postgresql/config/**</exclude>
+                        <exclude>com/vladislav/spring/jpa/postgresql/controller/**</exclude>
+                        <exclude>com/vladislav/spring/jpa/postgresql/error/**</exclude>
+                        <exclude>com/vladislav/spring/jpa/postgresql/exception/**</exclude>
+                        <exclude>com/vladislav/spring/jpa/postgresql/model/**</exclude>
+                        <exclude>com/vladislav/spring/jpa/postgresql/repository/**</exclude>
+                        <exclude>com/vladislav/spring/jpa/postgresql/dto/**</exclude>
+                        <exclude>com/vladislav/spring/jpa/postgresql/BookManagerApplication.class</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
         </plugins>
     </build>

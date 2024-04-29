@@ -20,14 +20,30 @@ public class Author {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "description") // Добавлено новое поле описания автора
+    private String description;
+
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Book> books = new HashSet<>();
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(name = "Author_Tag", joinColumns = { @JoinColumn(name = "author_id") }, inverseJoinColumns = {
+            @JoinColumn(name = "tag_id") })
+    private Set<Tag> tags = new HashSet<>();
 
     public Author() {
     }
 
     public Author(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Long getId() {
@@ -52,5 +68,13 @@ public class Author {
 
     public void setBooks(Set<Book> books) {
         this.books = books;
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
 }

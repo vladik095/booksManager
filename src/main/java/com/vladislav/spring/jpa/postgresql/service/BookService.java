@@ -51,56 +51,102 @@ public class BookService {
         return convertToDto(book);
     }
 
+    // В методе addBook в BookService
+    // В методе addBook в BookService
     public BookDto addBook(Long authorId, BookDto bookDto) {
         Author author = authorRepository.findById(authorId)
                 .orElseThrow(() -> new IllegalArgumentException(
                         "Author with id " + authorId + NOT_FOUND_MESSAGE));
 
         Book book = new Book();
-
         book.setTitle(bookDto.getTitle());
+        book.setDescription(bookDto.getDescription()); // Установка описания книги
         book.setAuthor(author);
 
+        // Добавление тегов к книге
         if (bookDto.getTags() != null) {
-            book.setTags(bookDto.getTags().stream()
+            Set<Tag> tags = bookDto.getTags().stream()
                     .map(tagDto -> tagRepository.findById(tagDto.getId())
                             .orElseThrow(() -> new IllegalArgumentException(
                                     TAG_NOT_FOUND_MESSAGE + tagDto.getId())))
-                    .collect(Collectors.toSet()));
+                    .collect(Collectors.toSet());
+            book.setTags(tags);
+
+            // Добавление тегов к автору
+            author.getTags().addAll(tags);
         } else {
             book.setTags(new HashSet<>());
         }
+
+        // Сохранение изменений в авторе в базе данных
+        authorRepository.save(author);
+
         author.getBooks().add(book);
 
         return convertToDto(bookRepository.save(book));
     }
 
     public void deleteBook(Long id) {
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Book", "id", id));
+
+        // Удаление связанных тегов книги
+        book.getTags().clear(); // Очищаем список тегов
+
+        // Сохраняем изменения в базе данных
+        bookRepository.save(book);
+
+        // Удаление самой книги
         bookRepository.deleteById(id);
     }
 
     public void updateBook(Long id, BookDto bookDto) {
-
         Book existingBook = bookRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Book", "id", id));
 
         existingBook.setTitle(bookDto.getTitle());
+        existingBook.setDescription(bookDto.getDescription());
+
+        // Проверяем, указан ли новый идентификатор автора
+        if (bookDto.getAuthorId() != null) {
+            Author author = authorRepository.findById(bookDto.getAuthorId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Author", "id", bookDto.getAuthorId()));
+            existingBook.setAuthor(author);
+        }
+
+        // Проверяем, указаны ли новые идентификаторы тегов
+        if (bookDto.getTagIds() != null && !bookDto.getTagIds().isEmpty()) {
+            Set<Tag> tags = bookDto.getTagIds().stream()
+                    .map(tagId -> tagRepository.findById(tagId)
+                            .orElseThrow(() -> new ResourceNotFoundException("Tag", "id", tagId)))
+                    .collect(Collectors.toSet());
+            existingBook.setTags(tags);
+        }
 
         bookRepository.save(existingBook);
     }
 
+    // В методе addTagToBook в BookService
     public void addTagToBook(Long bookId, Long tagId) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new RuntimeException(BOOK_NOT_FOUND_MESSAGE + bookId));
         Tag tag = tagRepository.findById(tagId)
                 .orElseThrow(() -> new RuntimeException(TAG_NOT_FOUND_MESSAGE + tagId));
 
+        // Добавим тег к книге
         if (book.getTags() == null) {
             book.setTags(new HashSet<>());
         }
-
         book.getTags().add(tag);
 
+        // Обновим автора книги
+        Author author = book.getAuthor();
+        if (author != null) {
+            author.getTags().add(tag); // Добавим тег автору
+            authorRepository.save(author);
+        }
+
+        // Обновим книгу
         bookRepository.save(book);
     }
 
@@ -126,12 +172,21 @@ public class BookService {
         BookDto bookDto = new BookDto();
         bookDto.setId(book.getId());
         bookDto.setTitle(book.getTitle());
+        bookDto.setDescription(book.getDescription()); // Присвоение описания книги
+
+        if (book.getAuthor() != null) {
+            bookDto.setAuthorName(book.getAuthor().getName()); // Установка имени автора как строки
+        }
 
         if (book.getTags() != null) {
-            Set<TagDto> tagDtos = book.getTags().stream()
-                    .map(this::convertToTagDto)
-                    .collect(Collectors.toSet());
-            bookDto.setTags(tagDtos);
+            bookDto.setTags(book.getTags().stream()
+                    .map(tag -> {
+                        TagDto tagDto = new TagDto();
+                        tagDto.setId(tag.getId());
+                        tagDto.setName(tag.getName());
+                        return tagDto;
+                    })
+                    .collect(Collectors.toSet()));
         }
 
         return bookDto;

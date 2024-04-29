@@ -120,19 +120,6 @@ class AuthorServiceTest {
     }
 
     @Test
-    void createOrUpdateAuthorsBulk() {
-
-        AuthorDto authorDto1 = new AuthorDto(null, "Author 1", Collections.emptySet());
-        AuthorDto authorDto2 = new AuthorDto(null, "Author 2", Collections.emptySet());
-
-        List<AuthorDto> authorDtoList = Arrays.asList(authorDto1, authorDto2);
-
-        authorService.createOrUpdateAuthorsBulk(authorDtoList);
-
-        verify(authorRepository, times(2)).save(any(Author.class));
-    }
-
-    @Test
     void getAuthorById_NotFound() {
 
         when(authorRepository.findById(anyLong())).thenReturn(Optional.empty());

@@ -44,11 +44,16 @@ public class TagService {
         tagRepository.deleteById(id);
     }
 
-    private TagDto convertToDto(Tag tag) {
+    public TagDto convertToDto(Tag tag) {
         TagDto tagDto = new TagDto();
         tagDto.setId(tag.getId());
         tagDto.setName(tag.getName());
         return tagDto;
+    }
+
+    public TagDto getTagByName(String name) {
+        Tag tag = tagRepository.findByName(name);
+        return convertToDto(tag);
     }
 
     private Tag convertToEntity(TagDto tagDto) {
