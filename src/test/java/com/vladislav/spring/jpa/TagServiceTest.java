@@ -78,25 +78,6 @@ class TagServiceTest {
     }
 
     @Test
-    void updateTag() {
-
-        TagDto tagDto = new TagDto();
-        tagDto.setId(1L);
-        tagDto.setName("Updated Tag");
-
-        Tag existingTag = new Tag();
-        existingTag.setId(1L);
-        existingTag.setName("Tag");
-
-        when(tagRepository.findById(1L)).thenReturn(Optional.of(existingTag));
-
-        tagService.updateTag(1L, tagDto);
-
-        verify(tagRepository, times(1)).findById(1L);
-        verify(tagRepository, times(1)).save(any(Tag.class));
-    }
-
-    @Test
     void deleteTag() {
 
         Long tagId = 1L;

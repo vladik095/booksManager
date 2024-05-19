@@ -1,10 +1,13 @@
 package com.vladislav.spring.jpa.postgresql.service;
 
+import com.vladislav.spring.jpa.postgresql.cache.BookCache;
+import com.vladislav.spring.jpa.postgresql.cache.BookCache;
 import com.vladislav.spring.jpa.postgresql.dto.AuthorDto;
 import com.vladislav.spring.jpa.postgresql.dto.BookDto;
 import com.vladislav.spring.jpa.postgresql.model.Author;
 import com.vladislav.spring.jpa.postgresql.model.Book;
 import com.vladislav.spring.jpa.postgresql.repository.AuthorRepository;
+import java.util.Collections;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,15 +22,17 @@ public class AuthorService {
     private final BookService bookService;
     private final RequestCounterService requestCounterService;
     private final TagService tagService;
+    private final BookCache bookCache;
 
     private static final String NOT_FOUND_MESSAGE = " not found";
 
     public AuthorService(AuthorRepository authorRepository, BookService bookService,
-            RequestCounterService requestCounterService, TagService tagService) {
+            RequestCounterService requestCounterService, TagService tagService, BookCache bookCache) {
         this.authorRepository = authorRepository;
         this.bookService = bookService;
         this.requestCounterService = requestCounterService;
         this.tagService = tagService;
+        this.bookCache = bookCache;
     }
 
     public List<AuthorDto> getAllAuthors() {
@@ -134,4 +139,19 @@ public class AuthorService {
         authorRepository.save(author);
         return convertToDto(author);
     }
+
+    public List<AuthorDto> findAuthorsByNameContaining(String keyword) {
+
+        List<Author> authors = authorRepository.findByNameContaining(keyword);
+        if (authors != null) {
+            List<AuthorDto> authorDtos = authors.stream()
+                    .map(this::convertToDto)
+                    .toList();
+
+            return authorDtos;
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
 }

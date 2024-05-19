@@ -1,6 +1,7 @@
 package com.vladislav.spring.jpa.postgresql.service;
 
 import com.vladislav.spring.jpa.postgresql.cache.BookCache;
+import com.vladislav.spring.jpa.postgresql.dto.AuthorDto;
 import com.vladislav.spring.jpa.postgresql.dto.BookDto;
 import com.vladislav.spring.jpa.postgresql.dto.TagDto;
 import com.vladislav.spring.jpa.postgresql.error.ResourceNotFoundException;
@@ -16,6 +17,7 @@ import java.util.HashSet;
 
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -244,6 +246,48 @@ public class BookService {
         } else {
             return Collections.emptyList();
         }
+    }
+
+    private BookDto createOrUpdateBook(BookDto bookDto) {
+        Book book = new Book(); // Initialize book with a default value
+        if (bookDto.getId() != null) {
+            Optional<Book> existingBookOpt = bookRepository.findById(bookDto.getId());
+            if (existingBookOpt.isPresent()) {
+                book = existingBookOpt.get();
+                book.setTitle(bookDto.getTitle());
+                book.setDescription(bookDto.getDescription());
+                // Other logic for updating the book
+            }
+        } else {
+            // Creating a new book if ID is not specified
+            book.setTitle(bookDto.getTitle());
+            book.setDescription(bookDto.getDescription());
+        }
+
+        // Setting the relationship with the author
+        if (bookDto.getAuthorId() != null) {
+            Optional<Author> authorOptional = authorRepository.findById(bookDto.getAuthorId());
+            if (authorOptional.isPresent()) {
+                book.setAuthor(authorOptional.get());
+            }
+        }
+
+        // Setting tags
+        if (bookDto.getTagIds() != null && !bookDto.getTagIds().isEmpty()) {
+            List<Tag> tags = tagRepository.findAllById(bookDto.getTagIds());
+            book.setTags(new HashSet<>(tags));
+        }
+
+        // Other operations if necessary
+
+        bookRepository.save(book);
+        return convertToDto(book);
+    }
+
+    public List<BookDto> createOrUpdateBooksBulk(List<BookDto> bookList) {
+        return bookList.stream()
+                .map(bookDto -> createOrUpdateBook(bookDto))
+                .collect(Collectors.toList());
     }
 
 }

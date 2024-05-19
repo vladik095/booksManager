@@ -6,30 +6,29 @@ import { Container, Paper, Button, Typography } from '@mui/material';
 export function AuthorController() {
     const paperStyle = { padding: "20px 20px", width: 600, margin: "20px auto" };
     const [authors, setAuthors] = useState([]);
-    const [authorId, setAuthorId] = useState("");
-    const [author, setAuthor] = useState(null);
+    const [keyword, setKeyword] = useState("");
     const [error, setError] = useState(null);
 
-    const fetchAuthorById = () => {
-        if (!authorId) {
-            setError("Please enter author ID");
+    const fetchAuthorsByKeyword = () => {
+        if (!keyword) {
+            setError("Please enter a keyword");
             return;
         }
 
-        fetch(`http://localhost:8080/authors/get/${authorId}`)
+        fetch(`http://localhost:8080/authors/search?keyword=${keyword}`)
             .then(response => {
                 if (response.ok) {
                     return response.json();
                 } else {
-                    throw new Error("Author not found");
+                    throw new Error("Authors not found");
                 }
             })
-            .then(author => {
-                setAuthor(author);
+            .then(authors => {
+                setAuthors(authors);
                 setError(null);
             })
             .catch(error => {
-                setAuthor(null);
+                setAuthors([]);
                 setError(error.message);
             });
     };
@@ -68,7 +67,7 @@ export function AuthorController() {
 
     return (
         <Container>
-            <Paper elevation={3} style={paperStyle}>
+            <Paper elevation={3} style={{ ...paperStyle, marginTop: '50px' }}>
                 <Box
                     component="form"
                     sx={{
@@ -77,51 +76,38 @@ export function AuthorController() {
                     noValidate
                     autoComplete="off"
                 >
-                    <Typography variant="h5" gutterBottom>Find Author by ID</Typography>
+                    <Typography variant="h4" gutterBottom>Find Author</Typography>
                     <TextField
                         id="outlined-basic"
-                        label="Enter the author ID"
+                        label="Enter a keyword"
                         variant="outlined"
-                        value={authorId}
-                        onChange={(e) => setAuthorId(e.target.value)}
+                        value={keyword}
+                        onChange={(e) => setKeyword(e.target.value)}
                     />
                     <br />
                     <Button
                         variant="contained"
-                        onClick={fetchAuthorById}
+                        onClick={fetchAuthorsByKeyword}
                     >
                         Find
                     </Button>
                     {error && <Typography variant="body2" color="error">{error}</Typography>}
                 </Box>
             </Paper>
-            {author && (
-                <Paper elevation={3} style={paperStyle}>
-                    <Typography variant="h5" gutterBottom>Author Details</Typography>
-                    <Typography>ID: {author.id}</Typography>
-                    <Typography>Name: {author.name}</Typography>
-                    <Typography>Books:</Typography>
-                    <ul>
-                        {author.books.map(book => (
-                            <li key={book.id}>{book.title}</li>
-                        ))}
-                    </ul>
-                </Paper>
-            )}
             {authors.length === 0 && <Typography variant="body2">No authors found</Typography>}
             {authors.map(author => (
                 <Paper elevation={6} style={{ margin: "10px", padding: "15px", textAlign: "left" }} key={author.id}>
-                    <Typography>ID: {author.id}</Typography>
-                    <Typography>Name: {author.name}</Typography>
-                    <Typography>Books:</Typography>
+                    <Typography variant="h5">ID: {author.id}</Typography>
+                    <Typography variant="h5">Name: {author.name}</Typography>
+                    <Typography variant="h5">Books:</Typography>
                     <ul>
                         {author.books.map(book => (
-                            <li key={book.id}>{book.title}</li>
+                            <li key={book.id}><Typography variant="h5">{book.title}</Typography></li>
                         ))}
                     </ul>
                     <Button
                         variant="contained"
-                        color="secondary"
+                        color="error"
                         onClick={() => handleDeleteAuthor(author.id)}
                     >
                         Delete
@@ -130,4 +116,4 @@ export function AuthorController() {
             ))}
         </Container>
     );
-}
+}    

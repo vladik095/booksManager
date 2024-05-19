@@ -98,10 +98,20 @@ public class BookController {
 
     @GetMapping("/search")
     public ResponseEntity<List<BookDto>> getBooksByTitleContaining(@RequestParam("keyword") String keyword) {
-        List<BookDto> books = bookService.findBooksByTitleContaining(keyword);
+        if (keyword == null) {
+            // Возвращаем ошибку BadRequest, если keyword равно null
+            return ResponseEntity.badRequest().build();
+        }
+
+        // Проверяем на санитизацию и санитизируем, если нужно
         if (shouldSanitize(keyword)) {
             keyword = sanitize(keyword);
         }
+
+        // Вызываем сервис для поиска книг по заголовку
+        List<BookDto> books = bookService.findBooksByTitleContaining(keyword);
+
+        // Возвращаем найденные книги в виде ResponseEntity
         logger.info("Books containing sanitized keyword fetched successfully.");
         return ResponseEntity.ok(books);
     }
@@ -112,6 +122,15 @@ public class BookController {
 
     private String sanitize(String input) {
         return input.replaceAll("[^a-zA-Z0-9]", "_");
+    }
+
+    @PostMapping("/bulk")
+    public ResponseEntity<List<BookDto>> createOrUpdateBooksBulk(@RequestBody List<BookDto> bookList) {
+        logger.info("Creating or updating books in bulk");
+
+        List<BookDto> createdOrUpdatedBooks = bookService.createOrUpdateBooksBulk(bookList);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdOrUpdatedBooks);
     }
 
 }

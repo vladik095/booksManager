@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
-//import { AuthorController } from '../components/AuthorController';
+
 
 const pageStyles = {
     display: 'flex',
@@ -31,7 +31,7 @@ const buttonStyles = {
     '&:hover': {
         backgroundColor: '#135592', // немного темнее при наведении
     },
-    fontSize: '20px', // увеличиваем размер шрифта для надписей внутри кнопок
+    fontSize: '20px',
 };
 
 const searchFieldStyles = {
@@ -39,20 +39,20 @@ const searchFieldStyles = {
     borderRadius: '50px',
     marginBottom: '20px',
     marginTop: '100px',
-    textAlign: 'center', // Центрирование текста внутри поля
-    position: 'relative', // задаем позицию для поисковой строки
+    textAlign: 'center', 
+    position: 'relative', 
 };
 
 const searchButtonStyles = {
-    position: 'absolute', // задаем абсолютную позицию для кнопки-лупы
-    right: '10px', // смещаем кнопку-лупу вправо
-    top: '50%', // позиционируем кнопку-лупу по вертикали
-    transform: 'translateY(-50%)', // корректируем позицию кнопки-лупы по вертикали
-    backgroundColor: '#135592', // цвет тени лупы
+    position: 'absolute', 
+    right: '10px', 
+    top: '50%', 
+    transform: 'translateY(-50%)', 
+    backgroundColor: '#135592', 
     '&:hover': {
-        backgroundColor: '#0e4569', // немного темнее при наведении
+        backgroundColor: '#0e4569', 
     },
-    fontSize: '20px', // увеличиваем размер шрифта для надписей внутри кнопок
+    fontSize: '20px', 
 };
 
 const welcomeTextStyle = {
@@ -68,24 +68,7 @@ export function MainPage() {
                     Welcome to Book Manager
                 </Typography>
 
-                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '80%', marginBottom: '50px' }}>
-                    <TextField
-                        id="outlined-basic"
-                        label="Search"
-                        variant="outlined"
-                        style={searchFieldStyles}
-                        placeholder="Fast search books by keyword"
-                        InputProps={{
-                            endAdornment: (
-                                <Button variant="contained" color="primary" style={searchButtonStyles}>
-                                    <SearchIcon />
-                                </Button>
-                            ),
-                            style: { paddingRight: '50px' } // увеличиваем правый отступ для размещения кнопки-лупы
-                        }}
-                    />
-                </Box>
-
+         
                 <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '50px' }}>
                     <Button variant="contained" color="primary" component={Link} to="/author" sx={buttonStyles}>
                         Authors

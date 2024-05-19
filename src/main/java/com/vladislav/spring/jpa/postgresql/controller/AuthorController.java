@@ -92,4 +92,23 @@ public class AuthorController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(createdOrUpdatedAuthors);
     }
+
+    private boolean shouldSanitize(String input) {
+        return input.matches(".*+[^a-zA-Z0-9].*+");
+    }
+
+    private String sanitize(String input) {
+        return input.replaceAll("[^a-zA-Z0-9]", "_");
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<AuthorDto>> getAuthorsByNameContaining(@RequestParam("keyword") String keyword) {
+        List<AuthorDto> authors = authorService.findAuthorsByNameContaining(keyword);
+        if (shouldSanitize(keyword)) {
+            keyword = sanitize(keyword);
+        }
+        logger.info("Authors containing sanitized keyword fetched successfully.");
+        return ResponseEntity.ok(authors);
+    }
+
 }

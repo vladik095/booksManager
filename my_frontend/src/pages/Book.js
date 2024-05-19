@@ -6,16 +6,21 @@ import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import EditIcon from '@mui/icons-material/Edit';
-import { Link } from 'react-router-dom';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import Autocomplete from '@mui/material/Autocomplete';
+import Chip from '@mui/material/Chip';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import { Link } from 'react-router-dom';
 
 export function Book({ currentAuthorId }) {
     const [books, setBooks] = useState([]);
     const [authors, setAuthors] = useState([]);
+    const [tags, setTags] = useState([]);
     const [error, setError] = useState(null);
     const [hoveredCard, setHoveredCard] = useState(null);
     const [deleteId, setDeleteId] = useState(null);
@@ -23,10 +28,13 @@ export function Book({ currentAuthorId }) {
     const [selectedBook, setSelectedBook] = useState(null);
     const [newAuthorName, setNewAuthorName] = useState("");
     const [showAddNewAuthorForm, setShowAddNewAuthorForm] = useState(false);
+    const [showAddNewTagForm, setShowAddNewTagForm] = useState(false);
+    const [newTagName, setNewTagName] = useState("");
 
     useEffect(() => {
         fetchAllBooks();
         fetchAllAuthors();
+        fetchAllTags();
     }, []);
 
     const fetchAllBooks = () => {
@@ -41,6 +49,22 @@ export function Book({ currentAuthorId }) {
             });
     };
 
+    const [showAddCardModal, setShowAddCardModal] = useState(false);
+const [newCardData, setNewCardData] = useState({
+    title: "",
+    description: "",
+    authorId: "",
+    tagIds: [],
+});
+
+const resetNewCardData = () => {
+    setNewCardData({
+        title: "",
+        description: "",
+        authorId: "",
+        tagIds: [],
+    });
+};
     const fetchAllAuthors = () => {
         fetch("http://localhost:8080/authors/getAll")
             .then(response => response.json())
@@ -53,10 +77,30 @@ export function Book({ currentAuthorId }) {
             });
     };
 
+    const fetchAllTags = () => {
+        fetch("http://localhost:8080/api/tags")
+            .then(response => response.json())
+            .then(data => {
+                setTags(data);
+            })
+            .catch(error => {
+                console.error('Error fetching tags:', error);
+                setError(error);
+            });
+    };
+
     const handleDelete = (id) => {
         setDeleteId(id);
         setShowDeleteConfirmation(true);
     };
+
+
+    const handleTagDelete = (tagToDelete) => {
+        const updatedTags = selectedBook.tags.filter((tag) => tag.id !== tagToDelete.id);
+        setSelectedBook({ ...selectedBook, tags: updatedTags });
+    };
+
+    
 
     const handleConfirmDelete = () => {
         const idToDelete = deleteId;
@@ -93,34 +137,33 @@ export function Book({ currentAuthorId }) {
     };
 
     const handleSave = (updatedBook) => {
-        const { id, authorId } = updatedBook;
-        if (authorId === "__new__") {
-            handleAddNewAuthor().then(() => {
+        const { id, authorId, tags } = updatedBook;
+        const tagIds = tags.map(tag => tag.id); // Получаем массив идентификаторов тегов
+    
+        fetch(`http://localhost:8080/api/books/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                title: updatedBook.title,
+                description: updatedBook.description,
+                authorId: authorId,
+                tagIds: tagIds, // Передаем массив идентификаторов тегов
+            }),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to update book');
+                }
+                console.log('Book updated successfully');
                 setSelectedBook(null);
                 fetchAllBooks();
-                fetchAllAuthors(); // обновляем список авторов после добавления нового
-            }).catch(error => console.error('Error adding new author:', error));
-        } else {
-            fetch(`http://localhost:8080/api/books/${id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(updatedBook),
             })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Failed to update book');
-                    }
-                    console.log('Book updated successfully');
-                    setSelectedBook(null);
-                    fetchAllBooks();
-                })
-                .catch(error => {
-                    console.error('Error updating book:', error);
-                    setSelectedBook(null);
-                });
-        }
+            .catch(error => {
+                console.error('Error updating book:', error);
+                setSelectedBook(null);
+            });
     };
 
     const handleCancelEdit = () => {
@@ -128,7 +171,7 @@ export function Book({ currentAuthorId }) {
     };
 
     const handleAddNewAuthor = () => {
-        return fetch("http://localhost:8080/authors/add", {
+        return fetch("http://localhost:8080/authors/save", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -144,17 +187,14 @@ export function Book({ currentAuthorId }) {
                 return response.json(); // Получаем данные добавленного автора
             })
             .then(newAuthor => {
-                // Обновляем список авторов
+                console.log('New author:', newAuthor);
+                // Обновляем список авторов добавлением нового автора в состояние
                 setAuthors(prevAuthors => [...prevAuthors, newAuthor]);
-                // Если данные нового автора получены, устанавливаем его id в selectedBook.authorId
-                setSelectedBook(prevBook => ({ ...prevBook, authorId: newAuthor.id }));
             })
             .catch(error => {
                 console.error('Error adding new author:', error);
             });
     };
-    
-    
 
     const handleCancelAddAuthor = () => {
         setNewAuthorName("");
@@ -165,6 +205,36 @@ export function Book({ currentAuthorId }) {
         setShowAddNewAuthorForm(true);
     };
 
+    const handleAddNewTagClick = () => {
+        setShowAddNewTagForm(true);
+    };
+
+    const handleCancelAddTag = () => {
+        setShowAddNewTagForm(false);
+        setNewTagName("");
+    };
+
+    const handleAddNewTagFormSubmit = () => {
+        fetch("http://localhost:8080/api/tags", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name: newTagName }),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to add new tag');
+                }
+                console.log('New tag added successfully');
+                handleCancelAddTag(); // Сбрасываем форму добавления тега после успешного добавления
+                fetchAllBooks(); // Обновляем список книг, возможно, он связан с тегами
+            })
+            .catch(error => {
+                console.error('Error adding new tag:', error);
+            });
+    };
+
     const handleAddNewAuthorFormSubmit = () => {
         handleAddNewAuthor().then(() => {
             setShowAddNewAuthorForm(false);
@@ -172,49 +242,82 @@ export function Book({ currentAuthorId }) {
         }).catch(error => console.error('Error adding new author:', error));
     };
 
+
+    const handleAddCard = () => {
+        fetch("http://localhost:8080/api/books/bulk", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify([newCardData]),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to add new card');
+            }
+            console.log('New card added successfully');
+            setShowAddCardModal(false); // Закрываем модальное окно после успешного добавления
+            fetchAllBooks(); // Обновляем список книг
+        })
+        .catch(error => {
+            console.error('Error adding new card:', error);
+        });
+    };
+
+
+    const linkStyle = { color: 'white', textDecoration: 'none', padding: '5px 5px', fontWeight: 'bold' };
+
     return (
-        <div style={{ background: '#F5DEB3', minHeight: '100vh', padding: '20px', position: 'relative' }}>
+        <div style={{ background: '#00FA', minHeight: '100vh', padding: '100px', position: 'relative' }}>
+
+              <Box sx={{ flexGrow: 1 }}>
+            <AppBar position="fixed" style={{ top: 0 }}>
+                <Toolbar>
+                    <Link style={linkStyle} to="/author">Author</Link>
+                    <div style={{ flexGrow: 1 }} />
+                    <Link style={linkStyle} to="/">Home</Link>
+                </Toolbar>
+            </AppBar>
+        </Box>
             <Box>
                 {error && <Typography variant="body2" color="error">{error}</Typography>}
                 <Grid container spacing={4}>
                     {books.map((book, index) => (
-                        <Grid item xs={12} sm={6} md={3} key={book.id}>
-                            <Paper
-                                elevation={3}
-                                style={{
-                                    padding: "20px",
-                                    height: "475px",
-                                    width: "400px",
-                                    position: "relative",
-                                    border: hoveredCard === book.id ? "2px solid #3f51b5" : "1px solid #ccc",
-                                    transition: "border-color 0.3s",
-                                    borderRadius: "8px",
-                                    backgroundColor: hoveredCard === book.id ? "#f0f0f0" : "#D3D3D3",
-                                    margin: 'auto'
-                                }}
-                                onMouseEnter={() => setHoveredCard(book.id)}
-                                onMouseLeave={() => setHoveredCard(null)}
-                            >
-                                <IconButton
-                                    onClick={() => handleDelete(book.id)}
-                                    style={{ position: "absolute", top: 0, right: 0 }}
-                                >
-                                    <CloseIcon />
-                                </IconButton>
-                                <IconButton
-                                    onClick={() => handleEdit(book)}
-                                    style={{ position: "absolute", top: 0, left: 0 }}
-                                >
-                                    <EditIcon />
-                                </IconButton>
-                                <Typography variant="h4" gutterBottom>{book.title}</Typography>
-                                <Typography variant="body1" style={{ fontSize: "1.4rem" }}>Author: {book.authorName}</Typography>
-                                <Typography variant="body1" style={{ fontSize: "1.4rem" }}>Tags: {book.tags.map(tag => tag.name).join(', ')}</Typography>
-                                <Typography variant="body2" style={{ fontSize: "1.2rem", marginTop: "10px" }}>{book.description}</Typography>
-                            </Paper>
+                        <Grid item xs={12} sm={6} md={4} lg={3} key={book.id}>
+                          <Paper
+    elevation={3}
+    style={{
+        padding: "20px",
+        height: "475px",
+        width: "400px",
+        position: "relative",
+        border: hoveredCard === book.id ? "2px solid #3f51b5" : "5px solid #ccc",
+        transition: "border-color 0.3s",
+        borderRadius: "40px",
+        backgroundColor: hoveredCard === book.id ? "#f0f0f0" : "#FFFFFF",
+        margin: 'auto'
+    }}
+    onMouseEnter={() => setHoveredCard(book.id)}
+    onMouseLeave={() => setHoveredCard(null)}
+>
+    <div style={{ position: "absolute", top: 0, right: 10 }}>
+      
+        <IconButton onClick={() => handleEdit(book)}>
+            <EditIcon />
+        </IconButton>
+        <IconButton onClick={() => handleDelete(book.id)}>
+            <CloseIcon />
+        </IconButton>
+    </div>
+    <Typography variant="h4" style={{ fontSize: "3rem", color: "#FF6C00", textAlign: "center", textShadow: "2px 2px 0px black"}} gutterBottom>{book.title}</Typography>
+    <Typography variant="body1" style={{ fontSize: "1.6rem", color: "#000000"}  }>Author: {book.authorName}</Typography>
+    <Typography variant="body1" style={{ fontSize: "1.6rem" }}>Tags: {book.tags.map(tag => tag.name).join(', ')}</Typography>
+    <Typography variant="body2" style={{ fontSize: "1.6rem", marginTop: "10px" }}>Description: {book.description}</Typography>
+</Paper>
+
                         </Grid>
                     ))}
-                    <Grid item xs={12} sm={6} md={3}>
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
                         <Paper
                             elevation={3}
                             style={{
@@ -225,14 +328,14 @@ export function Book({ currentAuthorId }) {
                                 flexDirection: "column",
                                 alignItems: "center",
                                 justifyContent: "center",
-                                borderRadius: "8px",
-                                backgroundColor: "#D3D3D3",
+                                borderRadius: "40px",
+                                backgroundColor: "#FFFFFF",
                                 margin: 'auto'
                             }}
                         >
-                            <Button onClick={handleAddNewAuthorClick} style={{ textDecoration: "none" }}>
-                                <AddCircleOutlineIcon fontSize="large" color="primary" />
-                            </Button>
+                          <Button onClick={() => setShowAddCardModal(true)}>
+    <AddCircleOutlineIcon fontSize="large" color="primary" />
+</Button>
                         </Paper>
                     </Grid>
                 </Grid>
@@ -246,8 +349,64 @@ export function Book({ currentAuthorId }) {
                     </div>
                 </div>
             )}
+{showAddCardModal && (
+    <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', background: '#fff', padding: '20px', borderRadius: '8px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}>
+        <Typography variant="h6">Add New Card</Typography>
+        <TextField
+            label="Title"
+            fullWidth
+            value={newCardData.title}
+            onChange={(e) => setNewCardData({ ...newCardData, title: e.target.value })}
+            style={{ marginBottom: '20px' }}
+        />
+        <TextField
+            label="Description"
+            fullWidth
+            multiline
+            rows={4}
+            value={newCardData.description}
+            onChange={(e) => setNewCardData({ ...newCardData, description: e.target.value })}
+            style={{ marginBottom: '20px' }}
+        />
+        <Select
+            label="Author"
+            fullWidth
+            value={newCardData.authorId}
+            onChange={(e) => setNewCardData({ ...newCardData, authorId: e.target.value })}
+            style={{ marginBottom: '20px' }}
+        >
+            {authors.map(author => (
+                <MenuItem key={author.id} value={author.id}>{author.name}</MenuItem>
+            ))}
+        </Select>
+        <Autocomplete
+            multiple
+            id="tags-filled"
+            options={tags}
+            getOptionLabel={(tag) => tag.name}
+            freeSolo
+            renderTags={(value, getTagProps) =>
+                value.map((option, index) => (
+                    <Chip variant="outlined" label={option.name} {...getTagProps({ index })} />
+                ))
+            }
+            renderInput={(params) => (
+                <TextField {...params} variant="outlined" label="Tags" />
+            )}
+            onChange={(event, newValue) => {
+                setNewCardData({ ...newCardData, tagIds: newValue.map(tag => tag.id) });
+            }}
+            style={{ marginBottom: '20px' }}
+        />
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
+            <Button variant="contained" color="primary" onClick={handleAddCard} style={{ marginRight: '10px' }}>Save</Button>
+            <Button variant="contained" onClick={() => { setShowAddCardModal(false); resetNewCardData(); }}>Cancel</Button>
+        </div>
+    </div>
+)}
+
             {selectedBook && (
-                <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', background: '#fff', padding: '20px', borderRadius: '8px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}>
+                <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', background: '#fff', padding: '20px', borderRadius: '8px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' , width: '750px', height: '450px' }}>
                     <Typography variant="h6">Edit Book</Typography>
                     <TextField
                         label="Title"
@@ -267,11 +426,24 @@ export function Book({ currentAuthorId }) {
                             <MenuItem key={author.id} value={author.id}>{author.name}</MenuItem>
                         ))}
                     </Select>
-                    <TextField
-                        label="Tags"
-                        fullWidth
-                        value={selectedBook.tags.map(tag => tag.name).join(', ')}
-                        onChange={(e) => setSelectedBook({ ...selectedBook, tags: e.target.value.split(',').map(tag => ({ name: tag.trim() })) })}
+                    <Autocomplete
+                        multiple
+                        id="tags-filled"
+                        options={tags}
+                        defaultValue={selectedBook.tags}
+                        getOptionLabel={(tag) => tag.name}
+                        freeSolo
+                        renderTags={(value, getTagProps) =>
+                            value.map((option, index) => (
+                                <Chip variant="outlined" label={option.name} {...getTagProps({ index })} />
+                            ))
+                        }
+                        renderInput={(params) => (
+                            <TextField {...params} variant="outlined" label="Tags" />
+                        )}
+                        onChange={(event, newValue) => {
+                            setSelectedBook({ ...selectedBook, tags: newValue });
+                        }}
                         style={{ marginBottom: '20px' }}
                     />
                     <TextField
@@ -283,31 +455,48 @@ export function Book({ currentAuthorId }) {
                         onChange={(e) => setSelectedBook({ ...selectedBook, description: e.target.value })}
                         style={{ marginBottom: '20px' }}
                     />
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
-                        <Button onClick={handleAddNewAuthorClick} variant="contained">Add New Author</Button>
-                        <div>
-                            <Button variant="contained" color="primary" onClick={() => handleSave(selectedBook)} style={{ marginRight: '10px' }}>Save</Button>
-                            <Button variant="contained" onClick={handleCancelEdit}>Cancel</Button>
-                        </div>
-                    </div>
-                </div>
-            )}
-            {showAddNewAuthorForm && (
-                <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', background: '#fff', padding: '20px', borderRadius: '8px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}>
-                    <Typography variant="h6">Add New Author</Typography>
-                    <TextField
-                        label="New Author Name"
-                        fullWidth
-                        value={newAuthorName}
-                        onChange={(e) => setNewAuthorName(e.target.value)}
-                        style={{ marginBottom: '20px' }}
-                    />
-                    <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <Button variant="contained" color="primary" onClick={handleAddNewAuthorFormSubmit} style={{ marginRight: '10px' }}>Add</Button>
-                        <Button variant="contained" onClick={handleCancelAddAuthor}>Cancel</Button>
-                    </div>
-                </div>
-            )}
-        </div>
-    );
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
+    <Button onClick={handleAddNewAuthorClick} variant="contained">Add New Author</Button>
+    <Button onClick={handleAddNewTagClick} variant="contained" style={{ marginLeft: '-250px' }}>Add New Tag</Button>
+    <div>
+        <Button variant="contained" color="primary" onClick={() => handleSave(selectedBook)} style={{ marginRight: '10px' }}>Save</Button>
+        <Button variant="contained" onClick={handleCancelEdit}>Cancel</Button>
+    </div>
+</div>
+</div>
+)}
+{showAddNewAuthorForm && (
+<div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', background: '#fff', padding: '20px', borderRadius: '8px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}>
+    <Typography variant="h6">Add New Author</Typography>
+    <TextField
+        label="New Author"
+        fullWidth
+        value={newAuthorName}
+        onChange={(e) => setNewAuthorName(e.target.value)}
+        style={{ marginBottom: '20px' }}
+    />
+    <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
+        <Button variant="contained" color="primary" onClick={handleAddNewAuthorFormSubmit} style={{ marginRight: '10px' }}>Save</Button>
+        <Button variant="contained" onClick={handleCancelAddAuthor}>Cancel</Button>
+    </div>
+</div>
+)}
+{showAddNewTagForm && (
+<div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', background: '#fff', padding: '20px', borderRadius: '8px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}>
+    <Typography variant="h6">Add New Tag</Typography>
+    <TextField
+        label="New Tag"
+        fullWidth
+        value={newTagName}
+        onChange={(e) => setNewTagName(e.target.value)}
+        style={{ marginBottom: '20px' }}
+    />
+    <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
+        <Button variant="contained" color="primary" onClick={handleAddNewTagFormSubmit} style={{ marginRight: '10px' }}>Save</Button>
+        <Button variant="contained" onClick={handleCancelAddTag}>Cancel</Button>
+    </div>
+</div>
+)}
+</div>
+);
 }

@@ -32,12 +32,13 @@ public class TagService {
         tagRepository.save(tag);
     }
 
-    public void updateTag(Long id, TagDto tagDto) {
-        Tag existingTag = tagRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Tag with id " + id + " not found"));
-        Tag updatedTag = convertToEntity(tagDto);
-        updatedTag.setId(existingTag.getId());
-        tagRepository.save(updatedTag);
+    // Inside TagService.java
+
+    public void updateTag(Long id, String tagName) {
+        Tag tag = tagRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tag not found"));
+        tag.setName(tagName);
+        tagRepository.save(tag);
     }
 
     public void deleteTag(Long id) {
