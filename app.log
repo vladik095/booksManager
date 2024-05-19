@@ -2078,3 +2078,7 @@
 2024-05-19 15:58:15.736  INFO 3542 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : After returning execution(AuthorController.getAllAuthors())
 2024-05-19 15:58:15.737  INFO 3542 --- [http-nio-8080-exec-9] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(BookController.getAllBooks())
 2024-05-19 15:58:15.737  INFO 3542 --- [http-nio-8080-exec-7] c.v.s.jpa.postgresql.aspect.BookAspect   : After execution(AuthorController.getAllAuthors())
+2024-05-19 16:35:49.134  INFO 3542 --- [SpringApplicationShutdownHook] c.v.s.jpa.postgresql.aspect.BookAspect   : Aspect is destroyed
+2024-05-19 16:35:49.134  INFO 3542 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-05-19 16:35:49.137  INFO 3542 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-05-19 16:35:49.148  INFO 3542 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

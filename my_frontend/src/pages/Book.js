@@ -190,7 +190,9 @@ const resetNewCardData = () => {
                 console.log('New author:', newAuthor);
                 // Обновляем список авторов добавлением нового автора в состояние
                 setAuthors(prevAuthors => [...prevAuthors, newAuthor]);
+                
             })
+
             .catch(error => {
                 console.error('Error adding new author:', error);
             });
@@ -228,8 +230,11 @@ const resetNewCardData = () => {
                 }
                 console.log('New tag added successfully');
                 handleCancelAddTag(); // Сбрасываем форму добавления тега после успешного добавления
-                fetchAllBooks(); // Обновляем список книг, возможно, он связан с тегами
+                fetchAllBooks();
+                fetchAllTags();
+                 // Обновляем список книг, возможно, он связан с тегами
             })
+            
             .catch(error => {
                 console.error('Error adding new tag:', error);
             });
@@ -368,17 +373,19 @@ const resetNewCardData = () => {
             onChange={(e) => setNewCardData({ ...newCardData, description: e.target.value })}
             style={{ marginBottom: '20px' }}
         />
-        <Select
-            label="Author"
-            fullWidth
-            value={newCardData.authorId}
-            onChange={(e) => setNewCardData({ ...newCardData, authorId: e.target.value })}
-            style={{ marginBottom: '20px' }}
-        >
-            {authors.map(author => (
-                <MenuItem key={author.id} value={author.id}>{author.name}</MenuItem>
-            ))}
-        </Select>
+<Autocomplete
+    fullWidth
+    options={authors}
+    getOptionLabel={(author) => author.name}
+    value={authors.find(author => author.id === newCardData.authorId) || null}
+    onChange={(event, newValue) => {
+        setNewCardData({ ...newCardData, authorId: newValue ? newValue.id : '' });
+    }}
+    renderInput={(params) => <TextField {...params} variant="outlined" label="Author" />}
+    style={{ marginBottom: '20px' }}
+/>
+
+
         <Autocomplete
             multiple
             id="tags-filled"
@@ -398,10 +405,18 @@ const resetNewCardData = () => {
             }}
             style={{ marginBottom: '20px' }}
         />
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
-            <Button variant="contained" color="primary" onClick={handleAddCard} style={{ marginRight: '10px' }}>Save</Button>
-            <Button variant="contained" onClick={() => { setShowAddCardModal(false); resetNewCardData(); }}>Cancel</Button>
-        </div>
+    
+    <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
+    <div>
+        <Button onClick={handleAddNewAuthorClick} variant="contained" style={{ marginRight: '15px' }}>Add New Author</Button>
+        <Button onClick={handleAddNewTagClick} variant="contained" style={{ marginRight: '50px' }}>Add New Tag</Button>
+    </div>
+    <div>
+        <Button variant="contained" color="primary" onClick={handleAddCard} style={{ marginRight: '10px' }}>Save</Button>
+        <Button variant="contained" onClick={() => { setShowAddCardModal(false); resetNewCardData(); }}>Cancel</Button>
+    </div>
+</div>
+
     </div>
 )}
 
