@@ -140,17 +140,13 @@ public class AuthorService {
     }
 
     public List<AuthorDto> findAuthorsByNameContaining(String keyword) {
-
         List<Author> authors = authorRepository.findByNameContaining(keyword);
         if (authors != null) {
-            List<AuthorDto> authorDtos = authors.stream()
+            return authors.stream()
                     .map(this::convertToDto)
                     .toList();
-
-            return authorDtos;
         } else {
             return Collections.emptyList();
         }
     }
-
 }

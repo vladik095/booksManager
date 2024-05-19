@@ -284,9 +284,10 @@ public class BookService {
     }
 
     public List<BookDto> createOrUpdateBooksBulk(List<BookDto> bookList) {
-        return bookList.stream()
-                .map(bookDto -> createOrUpdateBook(bookDto))
-                .collect(Collectors.toList());
+        return Collections.unmodifiableList(
+                bookList.stream()
+                        .map(this::createOrUpdateBook)
+                        .toList());
     }
 
 }
