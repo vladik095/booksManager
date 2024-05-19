@@ -1,7 +1,6 @@
 package com.vladislav.spring.jpa.postgresql.service;
 
 import com.vladislav.spring.jpa.postgresql.cache.BookCache;
-import com.vladislav.spring.jpa.postgresql.dto.AuthorDto;
 import com.vladislav.spring.jpa.postgresql.dto.BookDto;
 import com.vladislav.spring.jpa.postgresql.dto.TagDto;
 import com.vladislav.spring.jpa.postgresql.error.ResourceNotFoundException;

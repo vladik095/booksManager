@@ -1,7 +1,6 @@
 package com.vladislav.spring.jpa.postgresql.repository;
 
 import com.vladislav.spring.jpa.postgresql.model.Author;
-import com.vladislav.spring.jpa.postgresql.model.Book;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
